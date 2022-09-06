@@ -5,8 +5,8 @@ import {ClientLayout} from "./layouts"
 export default function App() {
   return (
     <ClientLayout className='app'>
-      <h1>REstaurant</h1>
-
+      <h1 className='app_title'>Restaurant</h1>
+      <Navigation />
     </ClientLayout>
   )
 }

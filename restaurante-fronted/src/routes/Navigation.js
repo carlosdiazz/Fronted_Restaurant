@@ -1,10 +1,10 @@
 import React from 'react'
-import {Routes} from 'react-router-dom'
+import {Routes, Route} from 'react-router-dom'
 
-export default function Navigation() {
+export function Navigation() {
   return (
     <Routes>
-        <h2>NAVIGATION</h2>
+      <Route path='/' element={<div>Home</div>} />
     </Routes>
   )
 }
