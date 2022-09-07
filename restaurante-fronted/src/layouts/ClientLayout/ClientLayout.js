@@ -7,7 +7,6 @@ export function ClientLayout(props) {
 
   return (
     <div>
-      <p>ClientLayout</p>
       {children}
     </div>
   )
