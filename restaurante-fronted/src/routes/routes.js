@@ -10,6 +10,7 @@ const routes = [
         path: "*",
         layout: BasicLayout,
         component: Error404,
-    }];
+    }
+];
 
 export default routes;
