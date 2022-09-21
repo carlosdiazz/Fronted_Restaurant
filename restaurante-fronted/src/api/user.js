@@ -2,7 +2,7 @@ import {BASE_API_URL} from '../config/config';
 
 export const loginApi = async (formValues) => {
     try {
-        const url = `${BASE_API_URL}/api/v1/auth/signin`;
+        const url = `${BASE_API_URL}/auth/signin`;
         const params = {
             method: "POST",
             headers: {
@@ -13,7 +13,7 @@ export const loginApi = async (formValues) => {
 
         const response = await fetch(url, params);
 
-        if(response.status !== 200) {
+        if(response.statusCode !== 200) {
             throw new Error("Error al iniciar sesión");
         }
 
@@ -28,7 +28,7 @@ export const loginApi = async (formValues) => {
 
 export const getMeApi = async(TOKEN) => {
     try{
-        const url = `${BASE_API_URL}/api/v1/auth/me`;
+        const url = `${BASE_API_URL}/auth/me`;
         const params = {
             method: "GET",
             headers: {
@@ -47,7 +47,7 @@ export const getMeApi = async(TOKEN) => {
 
 export const getUsersApi = async(token) => {
     try{
-        const url = `${BASE_API_URL}/api/v1/users`
+        const url = `${BASE_API_URL}/users`
         const params = {
             headers: {
                 Authorization: `Bearer ${token}`
@@ -60,5 +60,31 @@ export const getUsersApi = async(token) => {
 
     }catch(error){
         throw error
+    }
+}
+
+export const addUserApi = async(data, token) => {
+    try{
+
+        const url = `${BASE_API_URL}/users`
+        const params = {
+            method: "POST",
+            headers: {
+                Authorization: `Bearer ${token}`,
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(data)
+        };
+
+        const response = await fetch(url, params)
+        const result = await response.json()
+        console.log(result)
+        if(result.statusCode!==201){
+            throw Error(result.message)
+        }
+        return result;
+
+    }catch ( error) {
+        throw error;
     }
 }
