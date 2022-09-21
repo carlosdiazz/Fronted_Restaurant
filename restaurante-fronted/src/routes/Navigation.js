@@ -11,6 +11,7 @@ export function Navigation() {
         <Route
           key={index}
           path={route.path}
+          exact={route.exact}
           element={
           <route.layout>
             <route.component/>

@@ -1,7 +1,12 @@
 import React from 'react'
 
+
 export function HomeAdmin() {
+
   return (
-    <div>Home Admin</div>
-  )
+    <div>
+      <h1>Home Admin</h1>
+    </div>
+  
+    )
 }
