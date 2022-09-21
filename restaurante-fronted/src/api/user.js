@@ -78,7 +78,6 @@ export const addUserApi = async(data, token) => {
 
         const response = await fetch(url, params)
         const result = await response.json()
-        console.log(result)
         if(result.statusCode!==201){
             throw Error(result.message)
         }
@@ -86,5 +85,53 @@ export const addUserApi = async(data, token) => {
 
     }catch ( error) {
         throw error;
+    }
+}
+
+export const updateUserApi = async (id, data, token) => {
+    try{
+        const url = `${BASE_API_URL}/users/${id}`;
+        const params = {
+            method: 'PUT',
+            headers: {
+                Authorization: `Bearer ${token}`,
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(data)
+        };
+
+        const response = await fetch(url, params);
+        const result = await response.json()
+        if(result.statusCode!==200){
+            throw Error(result.message)
+        }
+        return result;
+
+
+    }catch(error){
+        throw error
+    }
+}
+
+export const deleteUserApi = async(id, token) => {
+    try{
+        console.log('ENEE')
+        const url = `${BASE_API_URL}/users/${id}`;
+        const params = {
+            method: 'DELETE',
+            headers: {
+                Authorization: `Bearer ${token}`,
+                "Content-Type": "application/json"
+            },
+        };
+
+        const response = await fetch(url, params);
+        const result = await response.json()
+        if(result.statusCode!==200){
+            throw Error(result.message)
+        }
+        return result;
+    }catch(error){
+        throw error
     }
 }

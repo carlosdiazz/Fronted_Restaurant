@@ -6,7 +6,7 @@ import './TableUsers.scss'
 
 export  function TableUser(props) {
   
-  const {users} = props
+  const {users, updateUser, onDeleteUser} = props
   
   
     return (
@@ -38,7 +38,7 @@ export  function TableUser(props) {
                             {user.is_staff ? <Icon name='check' /> : <Icon name='close' />}
                         </Table.Cell>
                         <Table.Cell>
-                            <Actions user={user} />
+                            <Actions user={user} updateUser={updateUser} onDeleteUser={onDeleteUser}/>
                         </Table.Cell>
                     </Table.Row>
                 ))
@@ -51,14 +51,15 @@ export  function TableUser(props) {
 
 const Actions = (props) => {
 
-    const {user} = props;
+    const {user, updateUser, onDeleteUser} = props;
+
 
     return (
         <Table.Cell textAlign='right'>
-            <Button icon onClick={() => console.log(user.email)}>
+            <Button icon onClick={()=>updateUser(user)}>
                 <Icon name='pencil'/>
             </Button>
-            <Button icon negative onClick={() => console.log("Eliminar")}>
+            <Button icon negative onClick={() => onDeleteUser(user)}>
                 <Icon name='close'></Icon>
             </Button>
         </Table.Cell>

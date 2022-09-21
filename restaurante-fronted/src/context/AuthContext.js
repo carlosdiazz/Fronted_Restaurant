@@ -9,23 +9,25 @@ export const AuthContext = createContext({
 
 });
 
+
+
 //Se ocupara de controla todas las relaciones
 export const AuthProvider = (props) => {
     const {children} = props;
     const [auth, setAuth] = useState(undefined)
     const {getMe} = useUser()
 
-    useEffect(()=>{
-        (async ()=>{
-            const token = getToken()
-            if(token){
-                const me = await getMe(token)
-                setAuth({token, me});
-            }else{
-                setAuth(null)
-            }
+    useEffect(() => {
+        (async () => {
+          const token = getToken();
+          if (token) {
+            const me = await getMe(token);
+            setAuth({ token, me });
+          } else {
+            setAuth(null);
+          }
         })();
-    },[])
+      }, []);
 
     const login = async(token) => {
         setToken(token)

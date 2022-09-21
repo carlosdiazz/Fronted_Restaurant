@@ -7,24 +7,26 @@ import {toast} from 'react-toastify'
 import "./AddEditUserFOrm.scss"
 
 
-export function AddEditUserForm() {
+export function AddEditUserForm(props) {
 
-    const {addUser} = useUser();
+    const {onClose, user} = props;
+    const {addUser, updateUser} = useUser();
 
     const formik = useFormik({
-        initialValues: initialValues(),
-        validationSchema: newSchame(),
+        initialValues: initialValues(user),
+        validationSchema: Yup.object(user ? updateSchame() : newSchame()),
         //validateOnChange: false,
         onSubmit: async(formValue) => {
             try{
-                await addUser(formValue)
-                console.log('Usuariop creado')
-                toast.success('Usuario Creado')
+                if(user) await updateUser(user._id, formValue)
+                else await addUser(formValue)
+                //! onRefetch() !Esto me da error
+                onClose()
+                toast.success(`Usuario ${user ?'actualizado' :'Creado'}`)
             }catch(error){
                 console.log(error)
                 toast.error(error.message)
             }
-            console.log(formValue)
         }
     });
 
@@ -44,28 +46,28 @@ export function AddEditUserForm() {
             <Checkbox toggle checked={formik.values.is_staff} onChange={(_, data)=> formik.setFieldValue('is_staff', data.checked)}/> Usuario Staff
         </div>
 
-        <Button type='submit' primary fluid content='Crear'/>
+        <Button type='submit' primary fluid content={user ? 'Actualizar' : 'Crear'}/>
 
     </Form>
   )
 }
 
 
-const initialValues = () => {
+const initialValues = (user) => {
     return {
-        nickname: "",
-        email: "",
-        first_name: "",
-        last_name: "",
-        password: "",
-        is_active: true,
-        is_staff: false,
-        birth_date: null
+        nickname: user?.nickname || "",
+        email: user?.email || "",
+        first_name: user?.first_name || "",
+        last_name: user?.last_name || "",
+        password: user?.password || "",
+        is_active: user?.is_active ? true : false,
+        is_staff: user?.is_staff ? true : false,
+        birth_date: user?.birth_date || null
     }
 }
 
 const newSchame = () => {
-    return Yup.object({
+    return {
         nickname: Yup.string().required(true),
         email: Yup.string().email(true).required(true),
         first_name: Yup.string().required(true),
@@ -74,5 +76,18 @@ const newSchame = () => {
         is_active: Yup.bool().required(true),
         is_staff: Yup.bool().required(true),
         birth_date: Yup.date().required(true)
-    });
+    };
+}
+
+const updateSchame = () => {
+    return {
+        nickname: Yup.string().required(true),
+        email: Yup.string().email(true).required(true),
+        first_name: Yup.string().required(true),
+        last_name: Yup.string().required(true),
+        password: Yup.string(),
+        is_active: Yup.bool().required(true),
+        is_staff: Yup.bool().required(true),
+        birth_date: Yup.date().required(false)
+    };
 }
