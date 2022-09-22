@@ -6,19 +6,17 @@ export const loginApi = async (formValues) => {
         const params = {
             method: "POST",
             headers: {
-                "Content-Type": "application/json",
+                "Content-Type": "application/json"
             },
             body: JSON.stringify(formValues),
         };
-
         const response = await fetch(url, params);
 
-        if(response.statusCode !== 200) {
-            throw new Error("Error al iniciar sesión");
+        if(response.status !== 200) {
+            throw Error(result.message);
         }
-
         const result = await response.json();
-        return result;
+        return result.data;
 
     } catch (error) {
         throw error;
@@ -53,7 +51,6 @@ export const getUsersApi = async(token) => {
                 Authorization: `Bearer ${token}`
             }
         }
-
         const response = await fetch(url, params)
         const result = await response.json()
         return result.data;
@@ -115,7 +112,6 @@ export const updateUserApi = async (id, data, token) => {
 
 export const deleteUserApi = async(id, token) => {
     try{
-        console.log('ENEE')
         const url = `${BASE_API_URL}/users/${id}`;
         const params = {
             method: 'DELETE',

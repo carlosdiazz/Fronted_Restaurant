@@ -1,5 +1,5 @@
 import React from 'react'
-import {Table, Button, Icon} from 'semantic-ui-react'
+import {Table, Button, Icon, TableRow} from 'semantic-ui-react'
 import {map} from 'lodash'
 
 import './TableUsers.scss'
@@ -12,7 +12,7 @@ export  function TableUser(props) {
     return (
     <Table className='table-users-admin'>
         <Table.Header>
-            <Table.Row>
+            <TableRow>
                 <Table.HeaderCell>Nickname</Table.HeaderCell>
                 <Table.HeaderCell>Email</Table.HeaderCell>
                 <Table.HeaderCell>Nombre</Table.HeaderCell>
@@ -20,7 +20,7 @@ export  function TableUser(props) {
                 <Table.HeaderCell>Activo</Table.HeaderCell>
                 <Table.HeaderCell>Staff</Table.HeaderCell>
                 <Table.HeaderCell></Table.HeaderCell>
-            </Table.Row>
+            </TableRow>
         </Table.Header>
 
         <Table.Body>
@@ -37,9 +37,9 @@ export  function TableUser(props) {
                         <Table.Cell className='status'>
                             {user.is_staff ? <Icon name='check' /> : <Icon name='close' />}
                         </Table.Cell>
-                        <Table.Cell>
-                            <Actions user={user} updateUser={updateUser} onDeleteUser={onDeleteUser}/>
-                        </Table.Cell>
+
+                        <Actions user={user} updateUser={updateUser} onDeleteUser={onDeleteUser}/>
+
                     </Table.Row>
                 ))
             }

@@ -15,13 +15,12 @@ export function LoginForm() {
     onSubmit: async (formValue) => {
       try{
         const response = await loginApi(formValue)
-        const access = response.data.token
+        const access = response.token
         login(access)
         //! Agregar
         toast.success('Logueado correctamente')
 
       }catch(error){
-        console.log(error)
         toast.error(error.message)
       }
     }

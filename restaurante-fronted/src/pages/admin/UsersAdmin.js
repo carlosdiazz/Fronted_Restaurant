@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react'
 import {HeaderPages, TableUser, AddEditUserForm} from '../../components/Admin'
 import {useUser} from '../../hooks/'
-import { Button, Loader } from 'semantic-ui-react';
+import { Loader } from 'semantic-ui-react';
 import {ModalBasic} from '../../components/Common'
 import {toast} from 'react-toastify'
 
@@ -11,24 +11,27 @@ export  function UsersAdmin() {
   const [titleModal, setTitleModal] = useState(null)
   const [showModal, setShowModal] = useState(false)
   const [contentModal, setContenModal] = useState(null)
-  const [refetch, setRefetch] = useState(false)
+
 
   const {loading, users, getUsers, deleteUser} = useUser();
+  
+  useEffect(() => {
+    getUsers();
+    
+  }, [])
 
-  const openCloseModal = () => setShowModal((prev) => !prev)
-  const onRefetch = () => setRefetch((prev) => !prev);
+  const openCloseModal = () => setShowModal((prev) => !prev);
+  
 
   const addUser = () => {
     setTitleModal('Nuevo usuario')
-    setContenModal(<AddEditUserForm onClose={openCloseModal} onRefetch={onRefetch}/>)
+    setContenModal(<AddEditUserForm onClose={openCloseModal} />)
     openCloseModal()
   }
 
-  useEffect(() => getUsers(),[refetch]);
-
   const updateUser = (data) => {
     setTitleModal('Actualizar usuario')
-    setContenModal(<AddEditUserForm onClose={openCloseModal} onRefetch={onRefetch} user={data}/>)
+    setContenModal(<AddEditUserForm onClose={openCloseModal} user={data}/>)
     openCloseModal()
   }
 
@@ -40,9 +43,7 @@ export  function UsersAdmin() {
       try {
         await deleteUser(data._id)
         toast.success(`Usuario eliminado`)
-        //!Arreglar onRefetch()
       }catch(error){
-        console.log(error)
         toast.error(error.message)
     }
     }

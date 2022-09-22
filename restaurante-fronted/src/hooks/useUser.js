@@ -14,7 +14,6 @@ export const useUser = () => {
             const response = await getMeApi(token)
             return response
         }catch(error){
-            console.log(error)
             throw error
         }
     };

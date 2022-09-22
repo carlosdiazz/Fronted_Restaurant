@@ -20,11 +20,9 @@ export function AddEditUserForm(props) {
             try{
                 if(user) await updateUser(user._id, formValue)
                 else await addUser(formValue)
-                //! onRefetch() !Esto me da error
                 onClose()
                 toast.success(`Usuario ${user ?'actualizado' :'Creado'}`)
             }catch(error){
-                console.log(error)
                 toast.error(error.message)
             }
         }

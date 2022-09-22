@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react'
-import {HeaderPages} from '../../components/Admin'
+import {HeaderPages, TableCategoryAdmi} from '../../components/Admin'
 import {useCategory} from '../../hooks'
 import {Loader} from 'semantic-ui-react'
 
@@ -17,7 +17,9 @@ export  function CategoriaAdmin() {
             btnTitle = 'Nueva Categoria'
         />
         {
-            loading ? (<Loader active inline='centered'>Cargando...</Loader>) : (<h2>Lista de categorias</h2>)
+            loading
+            ? (<Loader active inline='centered'>Cargando...</Loader>)
+            : (<TableCategoryAdmi categories={categories}/>)
         }
     </>
   )

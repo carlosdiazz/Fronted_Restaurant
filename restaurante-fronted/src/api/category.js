@@ -8,7 +8,7 @@ export const getCategoriesApi = async() => {
         if(result.statusCode!==200){
             throw Error(result.message)
         }
-        return result
+        return result.data
     }catch(error){
         throw error
     }
