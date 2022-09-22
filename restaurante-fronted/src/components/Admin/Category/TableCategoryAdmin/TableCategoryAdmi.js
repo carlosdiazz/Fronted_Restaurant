@@ -1,13 +1,13 @@
 import React from 'react'
 import { Table, Image,  Button, Icon, Tab} from 'semantic-ui-react';
 import {map} from 'lodash'
-
 import './TableCategoryAdmi.scss'
 
 
 export  function TableCategoryAdmi(props) {
   
   const {categories} = props;
+  //!Borrar
     console.log(categories)
     return (
         <Table className='table-category-admin'>
@@ -16,6 +16,7 @@ export  function TableCategoryAdmi(props) {
                     <Table.HeaderCell>Imagen</Table.HeaderCell>
                     <Table.HeaderCell>Categoria</Table.HeaderCell>
                     <Table.HeaderCell>Descripcion</Table.HeaderCell>
+                    <Table.HeaderCell></Table.HeaderCell>
                 </Table.Row>
             </Table.Header>
 
@@ -23,10 +24,11 @@ export  function TableCategoryAdmi(props) {
                 {map(categories, (category, index) => (
                     <Table.Row key={index}>
                         <Table.Cell width={2}>
-                            <Image src={'https://img.freepik.com/vector-premium/composicion-comida-rapida-vector-sobre-fondo-blanco_515421-407.jpg?w=2000'} />
+                            <Image src={category.imgUrl} />
                         </Table.Cell>
                         <Table.Cell>{category.name}</Table.Cell>
                         <Table.Cell>{category.description}</Table.Cell>
+                        <Action category={category}/>
                     </Table.Row>
                 ))}
             </Table.Body>
@@ -36,7 +38,17 @@ export  function TableCategoryAdmi(props) {
 }
 
 const Action = (props) => {
-    const {} = props;
+    const {category} = props;
 
-    //return ()
+    return (
+        <Table.Cell textAlign='right'>
+            <Button icon onClick={()=>console.log("Actualizar Categoria")}>
+                <Icon name ='pencil'></Icon>
+            </Button>
+            <Button icon negative onClick={()=>console.log("Elimar Categoria")}>
+                <Icon name='close'></Icon>
+
+            </Button>
+        </Table.Cell>
+    )
 }
