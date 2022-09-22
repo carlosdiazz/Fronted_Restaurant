@@ -9,17 +9,18 @@ import "./AddEditUserFOrm.scss"
 
 export function AddEditUserForm(props) {
 
-    const {onClose, user} = props;
+    const {onClose, user, onRefres} = props;
     const {addUser, updateUser} = useUser();
 
     const formik = useFormik({
         initialValues: initialValues(user),
         validationSchema: Yup.object(user ? updateSchame() : newSchame()),
-        //validateOnChange: false,
+        validateOnChange: false,
         onSubmit: async(formValue) => {
             try{
                 if(user) await updateUser(user._id, formValue)
                 else await addUser(formValue)
+                onRefres()
                 onClose()
                 toast.success(`Usuario ${user ?'actualizado' :'Creado'}`)
             }catch(error){
@@ -60,7 +61,7 @@ const initialValues = (user) => {
         password: user?.password || "",
         is_active: user?.is_active ? true : false,
         is_staff: user?.is_staff ? true : false,
-        birth_date: user?.birth_date || null
+        birth_date: user?.birth_date || false
     }
 }
 

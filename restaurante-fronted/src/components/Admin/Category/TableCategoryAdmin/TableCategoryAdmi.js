@@ -6,9 +6,8 @@ import './TableCategoryAdmi.scss'
 
 export  function TableCategoryAdmi(props) {
   
-  const {categories} = props;
-  //!Borrar
-    console.log(categories)
+  const {categories, updateCategory} = props;
+
     return (
         <Table className='table-category-admin'>
             <Table.Header>
@@ -28,7 +27,7 @@ export  function TableCategoryAdmi(props) {
                         </Table.Cell>
                         <Table.Cell>{category.name}</Table.Cell>
                         <Table.Cell>{category.description}</Table.Cell>
-                        <Action category={category}/>
+                        <Action category={category} updateCategory={updateCategory}/>
                     </Table.Row>
                 ))}
             </Table.Body>
@@ -38,11 +37,11 @@ export  function TableCategoryAdmi(props) {
 }
 
 const Action = (props) => {
-    const {category} = props;
+    const {category, updateCategory} = props;
 
     return (
         <Table.Cell textAlign='right'>
-            <Button icon onClick={()=>console.log("Actualizar Categoria")}>
+            <Button icon onClick={()=>updateCategory(category)}>
                 <Icon name ='pencil'></Icon>
             </Button>
             <Button icon negative onClick={()=>console.log("Elimar Categoria")}>

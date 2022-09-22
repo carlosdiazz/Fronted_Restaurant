@@ -12,26 +12,28 @@ export  function UsersAdmin() {
   const [showModal, setShowModal] = useState(false)
   const [contentModal, setContenModal] = useState(null)
 
+  const [refres, setRefres]=useState(false)
 
   const {loading, users, getUsers, deleteUser} = useUser();
   
   useEffect(() => {
     getUsers();
-    
-  }, [])
+
+  }, [refres])
 
   const openCloseModal = () => setShowModal((prev) => !prev);
+  const onRefres = () => setRefres((prev) => !prev);
   
 
   const addUser = () => {
     setTitleModal('Nuevo usuario')
-    setContenModal(<AddEditUserForm onClose={openCloseModal} />)
+    setContenModal(<AddEditUserForm onClose={openCloseModal} onRefres={onRefres}/>)
     openCloseModal()
   }
 
   const updateUser = (data) => {
     setTitleModal('Actualizar usuario')
-    setContenModal(<AddEditUserForm onClose={openCloseModal} user={data}/>)
+    setContenModal(<AddEditUserForm onClose={openCloseModal} user={data} onRefres={onRefres}/>)
     openCloseModal()
   }
 
@@ -43,6 +45,7 @@ export  function UsersAdmin() {
       try {
         await deleteUser(data._id)
         toast.success(`Usuario eliminado`)
+        onRefres()
       }catch(error){
         toast.error(error.message)
     }

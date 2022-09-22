@@ -9,18 +9,29 @@ export  function CategoriaAdmin() {
     const [showModal, setShowModal] = useState(false)
     const [titleModal, setTitleModal] = useState(null)
     const [contentModal, setContentModal] = useState(null)
+    const [refech, setRefech] = useState(false)
+
 
     const {loading, categories, getCategories} = useCategory()
+
     useEffect(() => {
         getCategories()
-    }, [])
+    }, [refech])
 
     const openCloseModal = () => setShowModal((prev) => !prev)
+    const onRefetch = () => setRefech((prev)=>!prev)
 
     const addCategory = () => {
         setTitleModal('Nueva Categoria')
-        setContentModal(<AddEditCategoryForm />)
+        setContentModal(<AddEditCategoryForm onClose ={openCloseModal} onRefetch={onRefetch}/>)
         openCloseModal()
+    }
+
+    const updateCategory = (data) => {
+        setTitleModal('Actualizar categoria')
+        setContentModal(
+            <AddEditCategoryForm onClose={openCloseModal} onRefetch={onRefetch} category={data}/>)
+            openCloseModal()
     }
 
     return (
@@ -33,7 +44,7 @@ export  function CategoriaAdmin() {
         {
             loading
             ? (<Loader active inline='centered'>Cargando...</Loader>)
-            : (<TableCategoryAdmi categories={categories}/>)
+            : (<TableCategoryAdmi categories={categories} updateCategory={updateCategory}/>)
         }
         <ModalBasic
             show={showModal}
