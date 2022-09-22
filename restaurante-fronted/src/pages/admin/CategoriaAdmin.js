@@ -3,6 +3,7 @@ import {HeaderPages, TableCategoryAdmi, AddEditCategoryForm} from '../../compone
 import {useCategory} from '../../hooks'
 import {Loader} from 'semantic-ui-react'
 import {ModalBasic} from '../../components/Common'
+import {toast} from 'react-toastify'
 
 export  function CategoriaAdmin() {
 
@@ -12,7 +13,7 @@ export  function CategoriaAdmin() {
     const [refech, setRefech] = useState(false)
 
 
-    const {loading, categories, getCategories} = useCategory()
+    const {loading, categories, getCategories, deleteCategory} = useCategory()
 
     useEffect(() => {
         getCategories()
@@ -34,6 +35,15 @@ export  function CategoriaAdmin() {
             openCloseModal()
     }
 
+    const onDeleteCategory = async(data) => {
+        const result = window.confirm(`Estas seguro que desea eliminar la categoria: ${data.name}`)
+        if(result){
+            await deleteCategory(data._id)
+            toast.success(`Categoria eliminada`)
+            onRefetch()
+        }
+    }
+
     return (
     <>
         <HeaderPages
@@ -44,7 +54,7 @@ export  function CategoriaAdmin() {
         {
             loading
             ? (<Loader active inline='centered'>Cargando...</Loader>)
-            : (<TableCategoryAdmi categories={categories} updateCategory={updateCategory}/>)
+            : (<TableCategoryAdmi categories={categories} updateCategory={updateCategory} deleteCategory={onDeleteCategory}/>)
         }
         <ModalBasic
             show={showModal}

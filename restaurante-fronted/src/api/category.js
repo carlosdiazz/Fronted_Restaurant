@@ -75,3 +75,23 @@ export const updateCategoryApi = async(id, data, token) => {
         throw error
     }
 }
+
+export const deleteCategoryApi = async(id, token) => {
+    try{
+        const url = `${BASE_API_URL}/categories/${id}`
+        const params = {
+            method: 'DELETE',
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+        }
+        const response = await fetch(url, params);
+        const result = await response.json()
+        if(result.statusCode!==200){
+            throw Error(result.message)
+        }
+        return result;
+    }catch(error){
+        throw error
+    }
+}

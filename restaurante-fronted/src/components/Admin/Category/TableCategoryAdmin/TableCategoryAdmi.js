@@ -6,7 +6,7 @@ import './TableCategoryAdmi.scss'
 
 export  function TableCategoryAdmi(props) {
   
-  const {categories, updateCategory} = props;
+  const {categories, updateCategory, deleteCategory} = props;
 
     return (
         <Table className='table-category-admin'>
@@ -27,7 +27,7 @@ export  function TableCategoryAdmi(props) {
                         </Table.Cell>
                         <Table.Cell>{category.name}</Table.Cell>
                         <Table.Cell>{category.description}</Table.Cell>
-                        <Action category={category} updateCategory={updateCategory}/>
+                        <Action category={category} updateCategory={updateCategory} deleteCategory={deleteCategory}/>
                     </Table.Row>
                 ))}
             </Table.Body>
@@ -37,14 +37,14 @@ export  function TableCategoryAdmi(props) {
 }
 
 const Action = (props) => {
-    const {category, updateCategory} = props;
+    const {category, updateCategory, deleteCategory} = props;
 
     return (
         <Table.Cell textAlign='right'>
             <Button icon onClick={()=>updateCategory(category)}>
                 <Icon name ='pencil'></Icon>
             </Button>
-            <Button icon negative onClick={()=>console.log("Elimar Categoria")}>
+            <Button icon negative onClick={()=>deleteCategory(category)}>
                 <Icon name='close'></Icon>
 
             </Button>
