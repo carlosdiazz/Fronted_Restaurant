@@ -1,35 +1,39 @@
-import React from 'react'
-import {Icon, Menu} from 'semantic-ui-react'
-import {useAuth} from '../../../hooks/'
-import './TopMenu.scss'
+import React from 'react';
+import {Icon, Menu} from "semantic-ui-react";
+import "./TopMenu.scss";
+import {useAuth} from "../../../hooks"
+import logo1 from './logo.png';
 
 export function TopMenu() {
+  const {auth, logout} = useAuth();
 
-    const {auth, logout} = useAuth()
 
-    const renderName = () => {
-        if(auth.me?.first_name) {
-            return auth.me?.first_name
-        }else{
-            return 'Usuario'
-        }
-
+  const renderName = () => {
+    if(auth.me?.first_name && auth.me?.last_name){
+        return `${auth.me.first_name} ${auth.me.last_name}`;
     }
-
+    return auth.me?.email;
+  };
+  
   return (
-    //! ARREGALR
-    <Menu  className='top-menu-admin'>
-        <Menu.Item className='top-menu-admin__logo' position='right'>
-        <h1>Restaurante Admin</h1>
+    //!AQUI
+    <Menu fixed='top' className='top-menu-admin'>
+        
+        <Menu.Item className="top-menu-admin__logo">
+        <div className="imagen">
+            <img src={logo1} className="imagen" alt=''/>
+        </div>
         </Menu.Item>
 
 
-        <Menu.Item position='right'>
-            <Menu.Item>Hola, {renderName()}</Menu.Item>
-            <Menu.Item onClick={logout}>
-                <Icon name='sign-out'/>
+        <Menu.Menu position="right">
+            <Menu.Item className='nombre'><font color="#0a4883">Hola, {renderName()}</font></Menu.Item>
+            <Menu.Item className="cuadrado" onClick={logout}>
+                <Icon name ="sign-out" />
             </Menu.Item>
-        </Menu.Item>
+        </Menu.Menu>
+        
     </Menu>
+    
   )
 }

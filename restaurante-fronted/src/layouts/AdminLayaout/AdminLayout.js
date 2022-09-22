@@ -5,24 +5,22 @@ import {useAuth} from '../../hooks'
 import {TopMenu, SideMenu} from '../../components/Admin'
 
 export function AdminLayout(props) {
+    const { children } = props;
+    const { auth } = useAuth();
 
-    const {children} = props
-    const {auth} = useAuth()
-
-    if(!auth) {
-        return <LoginAdmin />
-    }
-
+    if (!auth) return <LoginAdmin />;
+  
     return (
     <div className='admin-layout'>
-        <div className='admin-layout__menu'>
+      <div className='admin-layout__menu'>
         <TopMenu />
-        </div>
-        <div className='admin-layout__main-content'>
-        <SideMenu>
-            {children}
-        </SideMenu>
-        </div>
+      </div> 
+      <div className='admin-layout__main-content'>
+      <SideMenu>
+        {children}
+      </SideMenu>
+      </div>
+        
     </div>
   )
 }
