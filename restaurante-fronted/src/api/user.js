@@ -13,7 +13,7 @@ export const loginApi = async (formValues) => {
         const response = await fetch(url, params);
 
         if(response.status !== 200) {
-            throw Error(result.message);
+            throw Error('Error al inciar');
         }
         const result = await response.json();
         return result.data;
