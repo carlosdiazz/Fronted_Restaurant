@@ -1,0 +1,20 @@
+.table-product-admin {
+    td {
+        .ui.image {
+            width: 130px;
+            height: 130px;
+        }
+
+        &.status{
+            .icon {
+                &.close {
+                    color: red;
+                }
+                &.check {
+                    color: green;
+                }
+            }
+        }
+
+    }
+}
