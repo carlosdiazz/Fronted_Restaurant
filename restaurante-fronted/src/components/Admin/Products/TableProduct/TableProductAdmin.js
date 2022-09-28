@@ -5,9 +5,7 @@ import './TableProductAdmin.scss'
 
 export  function TableProductAdmin(props) {
 
-  const {products} = props;
-
-  console.log(products)
+  const {products, updateProduct, deleteProduct} = props;
 
   return (
     <Table className='table-product-admin'>
@@ -15,6 +13,7 @@ export  function TableProductAdmin(props) {
         <Table.Row>
           <Table.HeaderCell>Imagen</Table.HeaderCell>
           <Table.HeaderCell>Producto</Table.HeaderCell>
+          <Table.HeaderCell>Descripcion</Table.HeaderCell>
           <Table.HeaderCell>Precio</Table.HeaderCell>
           <Table.HeaderCell>Categoria</Table.HeaderCell>
           <Table.HeaderCell>Stock</Table.HeaderCell>
@@ -30,13 +29,14 @@ export  function TableProductAdmin(props) {
               <Image src={product.img_url} />
             </Table.Cell>
             <Table.Cell>{product.name}</Table.Cell>
+            <Table.Cell>{product.description}</Table.Cell>
             <Table.Cell>{product.price} $RD</Table.Cell>
-            <Table.Cell>{product.id_category.name}</Table.Cell>
+            <Table.Cell>{product.id_category?.name || 'Null'}</Table.Cell>
             <Table.Cell>{product.stock}</Table.Cell>
             <Table.Cell className='status'>
                 {product.is_active ? <Icon name='check'/> : <Icon name="close" />}
             </Table.Cell>
-            <Actions product={product}/>
+            <Actions product={product} updateProduct={updateProduct} deleteProduct={deleteProduct}/>
           </Table.Row>
         ))}
 
@@ -47,15 +47,15 @@ export  function TableProductAdmin(props) {
 
 const Actions = (props) => {
 
-  const {product} = props;
+  const {product, updateProduct, deleteProduct} = props;
 
   return (
     <Table.Cell textAlign='right'>
-      <Button icon onClick={()=>console.log("Editar")}>
+      <Button icon onClick={() => updateProduct(product)}>
         <Icon name='pencil' />
       </Button>
 
-      <Button icon negative onClick={()=>console.log("Eliminar...")}>
+      <Button icon negative onClick={() => deleteProduct(product)}>
         <Icon name='close' />
       </Button>
     

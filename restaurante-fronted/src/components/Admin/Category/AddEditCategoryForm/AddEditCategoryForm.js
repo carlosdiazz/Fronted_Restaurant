@@ -25,7 +25,7 @@ export function AddEditCategoryForm(props) {
                 if(category) await updateCategory(category._id, formValue)
                 else
                 await addCategories(formValue)
-                toast.success(`Categoria ${category ?'actualizada' :'Creado'}`)
+                toast.success(`Categoria ${category ?'actualizada' :'Creada'}`)
                 onRefetch()
                 onClose()
 
@@ -83,6 +83,6 @@ const newChema = () => {
     return {
         title: Yup.string().required(true),
         description: Yup.string().required(true),
-        imgUrl: Yup.string().required(true)
+        imgUrl: Yup.string().url().required(true)
     }
 }
