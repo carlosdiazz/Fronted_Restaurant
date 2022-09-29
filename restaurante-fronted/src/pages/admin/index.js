@@ -3,5 +3,5 @@ export * from "./HomeAdmin"
 export * from './UsersAdmin'
 export * from './CategoriaAdmin'
 export * from './HistorialPagosAdmin'
-export * from './MesasAdmin'
+export * from './TablesAdmin'
 export * from './ProductosAdmin'

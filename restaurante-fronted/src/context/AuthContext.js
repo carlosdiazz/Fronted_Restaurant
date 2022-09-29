@@ -15,22 +15,32 @@ export function AuthProvider(props){
 
     useEffect(() => {
         (async () => {
-            const token = getToken();
-            if (token) {
-                const me = await getMe(token)
-                setAuth({token, me});
-            } else {
+            try{
+                const token = getToken();
+                if (token) {
+                    const me = await getMe(token)
+                    setAuth({token, me});
+                } else {
+                    setAuth(null)
+                }
+            }catch(error){
+                removeToken();
                 setAuth(null)
+                console.log(error)
             }
         })();
     }, []);
-    
-    
+
     const login = async (token) => {
-        setToken(token);
-        const me = await getMe(token);
-        setAuth({ token, me });
-    
+        try{
+            setToken(token);
+            const me = await getMe(token);
+            setAuth({ token, me });
+        }catch(error){
+            console.log(error)
+            removeToken();
+            setAuth(null)
+        }
     };
 
     const logout = () => {

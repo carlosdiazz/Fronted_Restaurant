@@ -36,7 +36,7 @@ export const getMeApi = async(TOKEN) => {
 
         const response = await fetch(url, params);
         if(response.status !== 200){
-            throw Error('Token no valido')
+            throw Error('Token no validoo')
         }
         const result = await response.json();
         return result.data;

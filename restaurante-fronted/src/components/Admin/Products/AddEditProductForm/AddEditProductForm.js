@@ -134,9 +134,9 @@ const initialValues = (data) => {
     return {
         name : data?.name || '',
         description: data?.description || '',
-        price: data?.price || 0,
+        price: data?.price || '',
         id_category: data?.id_category?._id ||'',
-        stock: data?.stock || 0,
+        stock: data?.stock || '',
         is_active: data?.is_active === false ? false : true,
         img_url: data?.img_url || ''
     }

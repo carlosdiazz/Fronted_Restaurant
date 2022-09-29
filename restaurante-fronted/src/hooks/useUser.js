@@ -12,6 +12,7 @@ export const useUser = () => {
     const getMe = async(token) => {
         try{
             const response = await getMeApi(token)
+            console.log('aqq')
             return response
         }catch(error){
             throw error

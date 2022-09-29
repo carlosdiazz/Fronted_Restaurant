@@ -28,18 +28,18 @@ function MenuLeft(props) {
                 </h3>
             </Menu.Item>
 
+            <Menu.Item as={Link} to={'/admin/payments-history'} active={pathname === "/admin-payments-history"}>
+                <h3>
+                    <Icon name="history"/>Historial de Pagos
+                </h3>
+            </Menu.Item>
+
             <Menu.Item as={Link} to={'/admin/tables'} active={pathname === "/admin/tables"}>
                 <h3>
                     <Icon name="table"/>Mesas
                 </h3>
             </Menu.Item>
 
-            <Menu.Item as={Link} to={'/admin/payments-history'} active={pathname === "/admin-payments-history"}>
-                <h3>
-                    <Icon name="history"/>Historial de Pagos
-                </h3>
-            </Menu.Item>
-            
             <Menu.Item as={Link} to={'/admin/categories'} active={pathname === "/admin/categories"}>
                 <h3>
                     <Icon name="folder"/>Categorias
