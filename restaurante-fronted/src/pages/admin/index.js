@@ -1,5 +1,5 @@
 export * from "./LoginAdmin"
-export * from "./HomeAdmin"
+export * from "./OrdersAdmin"
 export * from './UsersAdmin'
 export * from './CategoriaAdmin'
 export * from './HistorialPagosAdmin'
