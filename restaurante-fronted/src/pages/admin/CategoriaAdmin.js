@@ -37,11 +37,16 @@ export  function CategoriaAdmin() {
 
     const onDeleteCategory = async(data) => {
         const result = window.confirm(`Estas seguro que desea eliminar la categoria: ${data.name}`)
-        if(result){
-            await deleteCategory(data._id)
-            toast.success(`Categoria eliminada`)
-            onRefetch()
+        try{
+            if(result){
+                await deleteCategory(data._id)
+                toast.success(`Categoria eliminada`)
+                onRefetch()
+            }
+        }catch(error){
+            toast.error(error.message)
         }
+
     }
 
     return (
