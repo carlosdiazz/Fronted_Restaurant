@@ -1,5 +1,5 @@
 import {useState} from 'react'
-import {getOrderByTableApi, checkCeliveredOrderApi} from '../api/orders'
+import {getOrderByTableApi, checkCeliveredOrderApi, addOrderToTableApi} from '../api/orders'
 
 export const useOrder = () => {
 
@@ -33,12 +33,25 @@ export const useOrder = () => {
         }
     }
 
+    const addOrderToTable = async(idTable, idProduct) => {
+        try{
+            await addOrderToTableApi(idTable, idProduct)
+
+        }catch(error){
+            setLoading(false)
+            setError(error)
+            throw error
+        }
+    }
+
+
     return {
         loading,
         error,
         orders,
         getorderByTable,
-        checkDeliveredOrder
+        checkDeliveredOrder,
+        addOrderToTable
     }
 
 }

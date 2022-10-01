@@ -18,7 +18,11 @@ export function AddEditProductForm(props) {
     const {addProduct, updateProduct} = useProduct()
 
     useEffect(() => {
-        getCategories()
+        try{
+            getCategories()
+        }catch(error){
+            console.log(error)
+        }
       }, [])
 
     useEffect(() => {

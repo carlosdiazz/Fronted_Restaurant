@@ -105,3 +105,19 @@ export const deleteProductApi = async(id, token) => {
         throw error
     }
 }
+
+export const getProductApi = async (id) => {
+    try{
+
+        const url = `${BASE_API_URL}/products/${id}`;
+        const response = await fetch(url)
+        const result = await response.json()
+        if(result.statusCode !== 200){
+            throw Error('Error consultando un producto')
+        }
+        return result.data
+
+    }catch(error){
+        throw error
+    }
+}

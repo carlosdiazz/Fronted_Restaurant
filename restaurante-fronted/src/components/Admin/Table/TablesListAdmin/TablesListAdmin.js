@@ -18,7 +18,6 @@ export  function TablesListAdmin(props) {
       if(autoReload){
 
         const autoReloadAction = () => {
-            console.log('Buscando pedidos')
             onReload()
             setTimeout(()=>{
                 autoReloadAction();

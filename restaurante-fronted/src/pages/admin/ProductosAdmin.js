@@ -17,7 +17,11 @@ export function ProductosAdmin() {
 
 
   useEffect(() => {
-    getProducts()
+    try{
+      getProducts()
+    }catch(error){
+      console.log(error)
+    }
   }, [refetch])
 
   const openCloseModal = () => setShowModal((prev) => !prev)

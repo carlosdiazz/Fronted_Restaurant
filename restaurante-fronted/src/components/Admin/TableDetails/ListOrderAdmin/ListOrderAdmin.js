@@ -7,12 +7,12 @@ import './ListOrderAdmin.scss'
 
 export function ListOrderAdmin(props) {
 
-    const {orders} = props
+    const {orders, onReloadOrders} = props
 
   return (
     <div className='list-orders-admin'>
         {map(orders, (order)=>(
-            <OrderItemAdmin key={order._id} order={order} />
+            <OrderItemAdmin key={order._id} order={order} onReloadOrders={onReloadOrders}/>
         ))}
     </div>
   )

@@ -99,3 +99,25 @@ export const deleteTableApi = async(id, token) => {
         throw error
     }
 }
+
+
+export const getTableApi = async(id, token) => {
+    try{
+
+        const url = `${BASE_API_URL}/tables/${id}`;
+        const params = {
+            headers: {Authorization:`Bearer ${token}`}
+        }
+
+        const response = await fetch(url, params)
+        const result = await response.json()
+
+        if(result.statusCode!==200){
+            throw Error(result.message)
+        }
+        return result.data;
+
+    }catch(error){
+        throw error
+    }
+}

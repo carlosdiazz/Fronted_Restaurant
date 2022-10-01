@@ -11,13 +11,14 @@ import {toast} from 'react-toastify'
 
 export function OrderItemAdmin(props) {
 
-  const {order} = props;
+  const {order, onReloadOrders} = props;
 
   const {checkDeliveredOrder} = useOrder()
 
     const onCheckDeliveredOrder = async() => {
         try{
             await checkDeliveredOrder(order._id)
+            onReloadOrders()
             toast.success("Producto entregado")
         }catch(error){
             console.log(error)
@@ -25,7 +26,8 @@ export function OrderItemAdmin(props) {
         }
     }
 
-  const {img_url, name} = order.id_product[0]
+    const {img_url, name} = order.id_product
+    //const {img_url, name} = order.id_product[0]
 
     return (
     <div className={className("order-item-admin",{
