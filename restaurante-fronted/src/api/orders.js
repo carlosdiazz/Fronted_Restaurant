@@ -105,3 +105,26 @@ export const AddPaymentToOrderApi = async(idOrder, idPayment) => {
         throw error;
     }
 }
+
+export const closeOrderApi = async(idOrder) => {
+    try{
+        const url = `${BASE_API_URL}/order/${idOrder}`
+        const params = {
+            method: 'PUT',
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                close: true
+            })
+        };
+        const response = await fetch(url, params)
+        const result = await response.json()
+        if(result.statusCode!==200){
+            throw Error(result.message)
+        }
+        return result.data
+    }catch(error){
+        throw error;
+    }
+}

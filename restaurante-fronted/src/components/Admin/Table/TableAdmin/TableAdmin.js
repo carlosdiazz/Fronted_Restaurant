@@ -8,12 +8,17 @@ import {ORDER_Status} from  '../../../../utils/constansts'
 import './TableAdmin.scss'
 import {getOrderByTableApi} from '../../../../api/orders'
 import {toast} from 'react-toastify'
+import {usePayment} from '../../../../hooks'
 
 export function TableAdmin(props) {
 
   const {table, reload} = props
   const [orders, setOrders] = useState([])
   const [tableBusy, setTableBusy] = useState(false)
+  const [pendingPayment, setPendingPayment] = useState(false)
+  const {getPaymentByTable} = usePayment()
+
+
 
   useEffect(() => {
     (async () => {
@@ -41,16 +46,31 @@ export function TableAdmin(props) {
     })();
   }, [reload])
 
+  useEffect(() => {
+    (async()=>{
+      const response = await getPaymentByTable(table._id)
+      if(size(response) > 0) setPendingPayment(true)
+      else setPendingPayment(false)
+    })()
+  }, [reload])
 
 
   return (
     <Link className='table-admin' to={`/admin/table/${table._id}`}>
         {
-          size(orders) > 0 ? (<Label circular color='orange'>{size(orders)}</Label>) : null
+          size(orders) > 0 
+            ? (<Label circular color='orange'> {size(orders)} </Label>)
+            : null
+        }
+        {
+          pendingPayment &&(
+            <Label circular color='orange'>Cuenta</Label>
+          )
         }
         <IcTable className={className({
           pending: size(orders) > 0,
           busy: tableBusy,
+          "pending-payment": pendingPayment
 
         })}/>
         <p>Mesa {table.number}</p>

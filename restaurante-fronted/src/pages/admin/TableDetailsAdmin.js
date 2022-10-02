@@ -3,7 +3,7 @@ import {useParams} from 'react-router-dom'
 import {useOrder, useTable, usePayment} from '../../hooks'
 import {Loader} from 'semantic-ui-react'
 import {HeaderPages, AddOrderForm} from '../../components/Admin'
-import {ListOrderAdmin} from '../../components/Admin/TableDetails'
+import {ListOrderAdmin, PaymentDetails} from '../../components/Admin/TableDetails'
 import {ModalBasic} from '../../components/Common'
 import {toast} from 'react-toastify'
 import {forEach, size} from 'lodash'
@@ -82,6 +82,8 @@ export function TableDetailsAdmin() {
 
   }
 
+  console.log(orders)
+
   return (
     <>
       <HeaderPages
@@ -99,8 +101,18 @@ export function TableDetailsAdmin() {
         <ModalBasic show={showModal} onClose={openCloseModal} title='Pedido nuevo'>
           {
           paymentData
-            ? (<h2>Detalles de la cuenta</h2>)
-            : (<AddOrderForm idTable={id} openCloseModal={openCloseModal} onReloadOrders={onReloadOrders}/>)
+            ? (<PaymentDetails
+                payment={paymentData}
+                orders={orders}
+                openCloseModal={openCloseModal}
+                onReloadOrders={onReloadOrders}
+              />)
+
+            : (<AddOrderForm
+                idTable={id}
+                openCloseModal={openCloseModal}
+                onReloadOrders={onReloadOrders}
+              />)
           }
         </ModalBasic>
 

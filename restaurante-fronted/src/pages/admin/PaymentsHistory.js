@@ -1,6 +1,6 @@
 import React from 'react'
 
-export function HistorialPagosAdmin() {
+export function PaymentsHistory() {
   return (
     <div>
         <h1>HistorialPagosAdmin</h1>

@@ -3,7 +3,7 @@ import {
     OrdersAdmin,
     UsersAdmin,
     CategoriaAdmin,
-    HistorialPagosAdmin,
+    PaymentsHistory,
     MesasAdmin,
     ProductosAdmin,
     TableDetailsAdmin
@@ -34,7 +34,7 @@ const routesAdmin = [
     {
         path: "/admin/payments-history",
         layout: AdminLayout,
-        component: HistorialPagosAdmin,
+        component: PaymentsHistory,
         exact: true
     },
 
