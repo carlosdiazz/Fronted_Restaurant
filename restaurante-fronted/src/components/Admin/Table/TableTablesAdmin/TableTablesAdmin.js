@@ -7,14 +7,6 @@ export function TableTablesAdmin(props) {
 
   const {tables, updateTable, deleteTables} = props
 
-
-
-
-
-
-
-
-
   return (
     <Table className='table-tables-admin'>
         <Table.Header>

@@ -4,7 +4,7 @@ import './HeaderPages.scss'
 
 export function HeaderPages(props) {
 
-  const {title, btnTitle, btnClick, btntitleTwo, btnClickTwo} = props
+  const {title, btnTitle, btnClick, btnTitleTwo, btnClickTwo} = props
     return (
     <div className='header-page-admin'>
         <h2>{title}</h2>
@@ -16,9 +16,9 @@ export function HeaderPages(props) {
                 </Button>
             )}
 
-            {btntitleTwo && (
+            {btnTitleTwo && (
                 <Button negative onClick={btnClickTwo} >
-                    {btntitleTwo}
+                    {btnTitleTwo}
                 </Button>
             )}
 

@@ -16,8 +16,6 @@ export function AddOrderForm(props) {
   const {products, getProducts, getProductById} = useProduct()
   const {addOrderToTable} = useOrder()
 
-  console.log(productsData)
-
     const formik = useFormik({
         initialValues: initialValues(),
         validationSchema: Yup.object(validationSchema()),

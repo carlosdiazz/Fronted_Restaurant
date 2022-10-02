@@ -34,11 +34,16 @@ export function MesasAdmin() {
 
   const onDeleteTables = async(data) => {
     const result = window.confirm(`Estas seguro que desea elimiar la mesa #: ${data.number}`)
-    if(result){
+    try{
+      if(result){
         await deleteTable(data._id)
         toast.success(`Mesa eliminada`)
         onRefetch()
+    }}catch(error){
+      console.log(error)
+      toast.error(error.message)
     }
+
 }
 
 
