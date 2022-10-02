@@ -78,3 +78,32 @@ export const closePaymentApi = async(idPayment, token) => {
         throw error
     }
 }
+
+export const getPaymentsApi = async(token) => {
+    try{
+
+        const statusFilter = `status_Payment=${PAYMENT_STATUS.PAID}`
+        const orderingFilter = `orderCreated_At=ASC`
+
+        const url = `${BASE_API_URL}/payment?${statusFilter}&${orderingFilter}`
+
+        const params = {
+            method: 'Get',
+            headers: {
+                Authorization: `Bearer ${token}`,
+                "Content-Type": "application/json"
+            },
+
+        }
+        const response = await fetch(url, params);
+        const result = await response.json();
+        if(result.statusCode!==200){
+            throw Error(result.message)
+        }
+        return result.data;
+
+
+    }catch(error){
+        throw error
+    }
+}

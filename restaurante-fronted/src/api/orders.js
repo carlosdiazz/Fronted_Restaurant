@@ -128,3 +128,21 @@ export const closeOrderApi = async(idOrder) => {
         throw error;
     }
 }
+
+
+export const getOrderByPaymentApi = async(idPayment) =>{
+    try{
+        const paymentFilter = `id_payment=${idPayment}`;
+
+        const url = `${BASE_API_URL}/order/?${paymentFilter}`;
+
+        const response = await fetch(url);
+        const result = await response.json();
+        if(result.statusCode !== 200){
+            throw Error(result.message)
+        }
+        return result.data
+    }catch(error){
+        throw error;
+    }
+}

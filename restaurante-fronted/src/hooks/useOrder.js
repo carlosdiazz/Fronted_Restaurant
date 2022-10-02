@@ -4,7 +4,8 @@ import {
     checkCeliveredOrderApi,
     addOrderToTableApi,
     AddPaymentToOrderApi,
-    closeOrderApi
+    closeOrderApi,
+    getOrderByPaymentApi
 } from '../api/orders'
 
 export const useOrder = () => {
@@ -52,6 +53,8 @@ export const useOrder = () => {
 
     const addPaymentToOrder = async(idOrder, idPayment) => {
         try{
+            console.log('IDorder => ', idOrder)
+            console.log('idPayment => ', idPayment)
             await AddPaymentToOrderApi(idOrder, idPayment)
 
         }catch(error){
@@ -69,7 +72,17 @@ export const useOrder = () => {
             setLoading(false)
             setError(error)
             console.log(error)
+        }
+    }
 
+
+    const getOrdersByPayment = async (idPayment) => {
+        try{
+            return await getOrderByPaymentApi(idPayment)
+        }catch(error){
+            setLoading(false)
+            setError(error)
+            console.log(error)
         }
     }
 
@@ -81,7 +94,8 @@ export const useOrder = () => {
         checkDeliveredOrder,
         addOrderToTable,
         addPaymentToOrder,
-        closeOrder
+        closeOrder,
+        getOrdersByPayment
     }
 
 }
