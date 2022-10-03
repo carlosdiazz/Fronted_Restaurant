@@ -66,7 +66,7 @@ export const getUsersApi = async(token) => {
 export const addUserApi = async(data, token) => {
     try{
         //! Crear una funcion apra asignar un rol podefecto
-        data['role'] = ['63399925603f1bd15f7e0293']
+        data['role'] = ['633af7eec797acc99aa464f9']
         const url = `${BASE_API_URL}/auth/signup`
         const params = {
             method: "POST",

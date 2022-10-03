@@ -19,8 +19,6 @@ export function PaymentProductList(props) {
         })()
     }, [])
 
-    console.log(orders)
-
     return (
     <div className='payment-product-list'>
         {

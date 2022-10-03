@@ -16,6 +16,22 @@ export const getProductsApi = async () => {
     }
 }
 
+export const getProductsTableApi = async () => {
+    try{
+
+        const url = `${BASE_API_URL}/products?is_active=TRUE`;
+        const response = await fetch(url)
+        const result = await response.json()
+        if(result.statusCode !== 200){
+            throw Error('Error consultados los productos')
+        }
+        return result.data
+
+    }catch(error){
+        throw error
+    }
+}
+
 export const addProductApi = async(data, token) => {
     try{
         const newProduct = {

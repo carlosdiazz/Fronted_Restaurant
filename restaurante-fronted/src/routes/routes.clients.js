@@ -1,13 +1,20 @@
-import {ClientLayout} from "../layouts"
-import {Home} from "../pages/client"
-import {Error404} from "../pages"
+import {BasicLayout, ClientLayout} from "../layouts"
+import {SelectTable, Categories} from "../pages/client"
+//import {Error404} from "../pages"
 
 const routesCLient = [
     {
         path: "/",
-        layout: ClientLayout,
-        component: Home,
+        layout: BasicLayout,
+        component: SelectTable,
+        exact: true
     },
+    {
+        path:"/client/:tableNumber",
+        layout: ClientLayout,
+        component: Categories,
+        exact: true
+    }
 ]
 
 export default routesCLient;

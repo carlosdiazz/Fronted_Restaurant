@@ -4,7 +4,8 @@ import {
     addProductApi,
     updateProductApi,
     deleteProductApi,
-    getProductApi
+    getProductApi,
+    getProductsTableApi
 } from '../api/product'
 import {useAuth} from './'
 
@@ -29,6 +30,20 @@ export const useProduct = () => {
             throw error
         }
     }
+
+    const getProductsTables = async() => {
+        try{
+            setLoading(true);
+            const response = await getProductsTableApi()
+            setLoading(false)
+            setProducts(response)
+        }catch(error){
+            setLoading(false)
+            setError(error)
+            throw error
+        }
+    }
+
 
     const addProduct = async (data) => {
         try {
@@ -88,6 +103,7 @@ export const useProduct = () => {
         addProduct,
         updateProduct,
         deleteProduct,
-        getProductById
+        getProductById,
+        getProductsTables
     }
 }

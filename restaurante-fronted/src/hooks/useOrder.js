@@ -53,8 +53,6 @@ export const useOrder = () => {
 
     const addPaymentToOrder = async(idOrder, idPayment) => {
         try{
-            console.log('IDorder => ', idOrder)
-            console.log('idPayment => ', idPayment)
             await AddPaymentToOrderApi(idOrder, idPayment)
 
         }catch(error){

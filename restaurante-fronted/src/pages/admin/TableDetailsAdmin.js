@@ -45,7 +45,6 @@ export function TableDetailsAdmin() {
     (async()=> {
       const response = await getPaymentByTable(id)
       if(size(response) >0) setPaymentData(response[0])
-      else console.log('Cuenta no pedida')
     })()
   }, [reloadOrders])
 
@@ -81,8 +80,6 @@ export function TableDetailsAdmin() {
     }
 
   }
-
-  console.log(orders)
 
   return (
     <>

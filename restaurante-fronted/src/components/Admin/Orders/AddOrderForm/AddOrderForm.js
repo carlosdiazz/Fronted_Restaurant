@@ -13,7 +13,7 @@ export function AddOrderForm(props) {
     const [productsData, setProductsData] =useState([])
 
   const {idTable, openCloseModal, onReloadOrders} = props
-  const {products, getProducts, getProductById} = useProduct()
+  const {products, getProductsTables, getProductById} = useProduct()
   const {addOrderToTable} = useOrder()
 
     const formik = useFormik({
@@ -62,7 +62,8 @@ export function AddOrderForm(props) {
     //!Anadir notificaciones
     useEffect(() => {
         try{
-            getProducts()
+            //!Cambiar
+            getProductsTables()
         }catch(error){
             toast.error(error.message)
             console.log(error)

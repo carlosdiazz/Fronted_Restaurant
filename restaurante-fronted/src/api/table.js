@@ -121,3 +121,20 @@ export const getTableApi = async(id, token) => {
         throw error
     }
 }
+
+export const getTablesByNumberApi = async(idTable)=>{
+    try{
+        const filterTable=`number=${idTable}`
+        const url = `${BASE_API_URL}/tables?${filterTable}`;
+        const response = await fetch(url)
+        const result = await response.json()
+
+        if(result.statusCode!==200){
+            throw Error(result.message)
+        }
+        return result.data;
+
+    }catch(error){
+        throw error
+    }
+}

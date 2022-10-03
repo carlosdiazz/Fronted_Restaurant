@@ -1,5 +1,13 @@
 import {useState} from 'react';
-import {getTablesApi, addTableApi, updateTableApi, deleteTableApi, getTableApi} from '../api/table';
+import {size} from'lodash'
+import {
+    getTablesApi,
+    addTableApi,
+    updateTableApi,
+    deleteTableApi,
+    getTableApi,
+    getTablesByNumberApi
+} from '../api/table';
 import {useAuth} from './';
 
 export const useTable = () => {
@@ -74,6 +82,18 @@ export const useTable = () => {
         }
     }
 
+    const isExistTable = async(tableNumber) => {
+        try{
+            const response = await getTablesByNumberApi(tableNumber)
+            if(size(response) === 0) throw Error('Esta mesa no existe');
+            return true;
+
+        }catch(error){
+            setLoading(false)
+            setError(error)
+            throw error
+        }
+    }
 
     return {
         loading,
@@ -84,7 +104,8 @@ export const useTable = () => {
         addTable,
         updatetable,
         deleteTable,
-        getTable
+        getTable,
+        isExistTable
     }
 
 }
