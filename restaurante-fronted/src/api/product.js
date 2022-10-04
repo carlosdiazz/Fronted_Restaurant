@@ -137,3 +137,21 @@ export const getProductApi = async (id) => {
         throw error
     }
 }
+
+export const getProductsByCategoryApi = async (idCategory) => {
+    try{
+        const filterActive = "is_active=TRUE"
+        const filterCategory = `id_category=${idCategory}&${filterActive}`
+
+        const url = `${BASE_API_URL}/products?${filterCategory}`;
+        const response = await fetch(url)
+        const result = await response.json()
+        if(result.statusCode !== 200){
+            throw Error('Error consultados los productos')
+        }
+        return result.data
+
+    }catch(error){
+        throw error
+    }
+}

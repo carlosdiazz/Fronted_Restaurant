@@ -18,7 +18,6 @@ export function SelectTable(props) {
             setError("Npo has introducido ninguna mesa")
         }else{
             try{
-                console.log('Entrando')
                 const exist = await isExistTable(tableNum)
                 if(exist){
                     navigate(`/client/${tableNum}`)

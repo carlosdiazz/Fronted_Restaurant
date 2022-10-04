@@ -40,8 +40,6 @@ export function ClientLayout(props) {
   }
 
 
-  console.log(useParams())
-
   return (
     <div className='client-layout-gb'>
       <Container className='client-layout'>

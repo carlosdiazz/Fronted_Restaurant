@@ -15,7 +15,6 @@ export function ListCategories(props) {
     navigate(`${location.pathname}/${id}`)
   }
 
-  console.log(location)
     return (
     <div className='list-categories-client'>
         {
