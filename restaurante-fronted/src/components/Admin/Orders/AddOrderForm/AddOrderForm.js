@@ -1,7 +1,7 @@
 import React,{useEffect, useState} from 'react';
 import {Form, Image, Button, Dropdown} from 'semantic-ui-react';
 import {useProduct, useOrder} from "../../../../hooks"
-import _, {map} from 'lodash'
+import {map} from 'lodash'
 import {useFormik} from 'formik'
 import * as Yup from 'yup'
 import {toast} from 'react-toastify'
@@ -27,7 +27,7 @@ export function AddOrderForm(props) {
                 }
                 onReloadOrders()
                 openCloseModal()
-                toast.success("Productos anadidso")
+                toast.success("Productos Anadidos")
             }catch(error){
                 console.log(error)
                 toast.error(error.message)

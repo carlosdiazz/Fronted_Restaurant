@@ -27,7 +27,10 @@ export const usePayment = () => {
 
     const getPaymentByTable = async(idTable) => {
         try{
-            return await getPaymentByTableApi(idTable,'')
+            if(idTable){
+                return await getPaymentByTableApi(idTable,'')
+            }
+            return idTable
         }catch (error) {
             setError(error)
             console.log(error)

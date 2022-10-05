@@ -5,7 +5,7 @@ export const getTablesApi = async(token)=>{
 
         const url = `${BASE_API_URL}/tables`;
         const params = {
-            headers: {Authorization:`Bearer ${token}`}
+            headers: {Authorization:`Bearer ${token}`, "ngrok-skip-browser-warning":true}
         }
 
         const response = await fetch(url, params)
@@ -36,7 +36,8 @@ export const addTableApi = async(data, token) => {
             method: 'POST',
             headers: {
                 Authorization: `Bearer ${token}`,
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                "ngrok-skip-browser-warning":true
             },
             body: JSON.stringify(new_Table)
             //!body: formData
@@ -63,7 +64,8 @@ export const updateTableApi = async(id, data, token) => {
             method: 'PUT',
             headers: {
                 Authorization: `Bearer ${token}`,
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
+                "ngrok-skip-browser-warning":true
             },
             body: JSON.stringify(new_data)
         }
@@ -87,6 +89,7 @@ export const deleteTableApi = async(id, token) => {
             method: 'DELETE',
             headers: {
                 Authorization: `Bearer ${token}`,
+                "ngrok-skip-browser-warning":true
             },
         }
         const response = await fetch(url, params);
@@ -106,7 +109,8 @@ export const getTableApi = async(id, token) => {
 
         const url = `${BASE_API_URL}/tables/${id}`;
         const params = {
-            headers: {Authorization:`Bearer ${token}`}
+            headers: {Authorization:`Bearer ${token}`},
+            "ngrok-skip-browser-warning":true
         }
 
         const response = await fetch(url, params)
@@ -126,7 +130,11 @@ export const getTablesByNumberApi = async(idTable)=>{
     try{
         const filterTable=`number=${idTable}`
         const url = `${BASE_API_URL}/tables?${filterTable}`;
-        const response = await fetch(url)
+        const params = {
+            headers: {Authorization:`Bearer dd`},
+            "ngrok-skip-browser-warning":true
+        }
+        const response = await fetch(url, params)
         const result = await response.json()
 
         if(result.statusCode!==200){

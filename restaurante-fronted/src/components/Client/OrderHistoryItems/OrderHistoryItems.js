@@ -12,8 +12,6 @@ export function OrderHistoryItems(props) {
 
   const {name, img_url} = order.id_product
 
-  console.log(order)
-
   return (
     <div className={classNames('order-history-item', {
       [order.status.toLowerCase()] : order.status
