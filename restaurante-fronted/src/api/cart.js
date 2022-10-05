@@ -10,3 +10,13 @@ export const addProductCart = (id) => {
     products.push(id)
     localStorage.setItem(PRODUCT_CART, JSON.stringify(products))
 }
+
+export const removeProductCartApi = (index) => {
+    const idProduct = getProductsCart()
+    idProduct.splice(index, 1);
+    localStorage.setItem(PRODUCT_CART, JSON.stringify(idProduct))
+}
+
+export const clearProductCartApi = () => {
+    localStorage.removeItem(PRODUCT_CART)
+}

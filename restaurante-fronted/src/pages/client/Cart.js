@@ -5,15 +5,18 @@ import {Loader} from 'semantic-ui-react'
 import {useProduct} from '../../hooks'
 import {getProductsCart} from '../../api/cart'
 import {size} from 'lodash'
+import {ListProductCart} from '../../components/Client'
 
 export function Cart() {
 
   const [products, setProducts] = useState(null)
+  const [reloadCart, setReloadCart] = useState(false)
+
   const {getProductById} = useProduct()
 
-  const {tableNumber} = useParams()
+  const onReloadCart = () => setReloadCart((prev) => !prev)
 
-  console.log(products)
+  const {tableNumber} = useParams()
 
   useEffect(() => {
     (async() => {
@@ -28,7 +31,7 @@ export function Cart() {
       setProducts(productsArray)
 
     })()
-  }, [])
+  }, [reloadCart])
 
   return (
     <div>
@@ -43,7 +46,7 @@ export function Cart() {
                   <Button primary>Ver pedido</Button>
                 </Link>
               </div>)
-            : (<h1>Lista de productos</h1>)
+            : (<ListProductCart products={products} onReloadCart={onReloadCart}/>)
         }
     </div>
   )

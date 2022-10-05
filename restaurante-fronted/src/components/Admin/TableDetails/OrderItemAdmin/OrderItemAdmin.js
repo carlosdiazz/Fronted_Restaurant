@@ -1,9 +1,8 @@
-import { orderBy } from 'lodash';
 import React from 'react'
-import {Button, Image} from 'semantic-ui-react'
+import {Button, Icon, Image} from 'semantic-ui-react'
 import className from 'classnames'
 import moment from 'moment'
-import "moment/locale/es"
+import "moment/locale/es-do"
 import './OrderItemAdmin.scss'
 import {ORDER_Status} from '../../../../utils/constansts'
 import {useOrder} from '../../../../hooks'
@@ -13,13 +12,25 @@ export function OrderItemAdmin(props) {
 
   const {order, onReloadOrders} = props;
 
-  const {checkDeliveredOrder} = useOrder()
+  const {checkDeliveredOrder, deleteOrdeById} = useOrder()
 
     const onCheckDeliveredOrder = async() => {
         try{
             await checkDeliveredOrder(order._id)
             onReloadOrders()
             toast.success("Producto entregado")
+        }catch(error){
+            console.log(error)
+            toast.error(error.message)
+        }
+    }
+
+
+    const onDeleteOrder = async() => {
+        try{
+            await deleteOrdeById(order._id)
+            onReloadOrders()
+            toast.success("Producto eliminado")
         }catch(error){
             console.log(error)
             toast.error(error.message)
@@ -34,7 +45,7 @@ export function OrderItemAdmin(props) {
         [order.status.toLowerCase()]:true
     })}>
         <div className='order-item-admin__time'>
-            <span>{moment(order.createdAt).format("HH:mm")}</span>{" - "}
+            <span>{moment(order.createdAt).format("LT")}</span>{" - "}
             <span>{moment(order.createdAt).startOf('secods').fromNow()}</span>
         </div>
         <div className='order-item-admin__product'>
@@ -44,7 +55,12 @@ export function OrderItemAdmin(props) {
 
         {
             order.status === ORDER_Status.PENDING
-            ? (<Button primary onClick={onCheckDeliveredOrder }> Marcar entregado </Button>)
+            ? (
+                <div>
+                    <Button primary onClick={onCheckDeliveredOrder }> Marcar entregado </Button>
+                    <Button color='red' onClick={onDeleteOrder} ><Icon name='close'></Icon></Button>
+                </div>
+            )
             : (<h1>Entregado</h1>)
         }
 

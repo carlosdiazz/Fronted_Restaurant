@@ -20,9 +20,6 @@ export function Products() {
     }
   }, [idCategory])
 
-  console.log(products)
-
-
   return (
     <div>
         <Link to={`/client/${tableNumber}`}>Volver a categoria</Link>

@@ -95,6 +95,18 @@ export const useTable = () => {
         }
     }
 
+    const getTableByNumber = async(tableNumber) => {
+        try{
+            const response = await getTablesByNumberApi(tableNumber)
+            return response;
+
+        }catch(error){
+            setLoading(false)
+            setError(error)
+            throw error
+        }
+    }
+
     return {
         loading,
         error,
@@ -105,7 +117,8 @@ export const useTable = () => {
         updatetable,
         deleteTable,
         getTable,
-        isExistTable
+        isExistTable,
+        getTableByNumber
     }
 
 }

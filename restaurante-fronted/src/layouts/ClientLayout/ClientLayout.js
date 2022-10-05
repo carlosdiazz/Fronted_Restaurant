@@ -9,7 +9,6 @@ export function ClientLayout(props) {
   const {children } = props
   const {isExistTable} = useTable()
   const {tableNumber} = useParams()
-  //const {} 
 
   const navigate = useNavigate()
 

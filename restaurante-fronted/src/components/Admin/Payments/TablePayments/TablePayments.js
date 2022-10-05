@@ -54,7 +54,7 @@ export function TablePayments(props) {
                             <Icon name={getIconPaymentName(payment.payment_Type)} />
                             {payment.payment_Type}
                         </Table.Cell>
-                        <Table.Cell>{moment(payment.createdAt).format("DD/MM/YYYY - HH:MM")}</Table.Cell>
+                        <Table.Cell>{moment(payment.createdAt).format("DD/MM/YYYY - LT")}</Table.Cell>
                         <Table.Cell textAlign='right'>
                             <Button icon onClick={() => showDetails(payment)}>
                                 <Icon name='eye'></Icon>

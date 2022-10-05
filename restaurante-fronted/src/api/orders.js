@@ -146,3 +146,22 @@ export const getOrderByPaymentApi = async(idPayment) =>{
         throw error;
     }
 }
+
+export const deleteOrderByIdAPI = async(idTable) => {
+    try{
+
+        const url = `${BASE_API_URL}/order/${idTable}`;
+        const params = {
+            method: 'DELETE',
+        };
+        const response = await fetch(url, params);
+        const result = await response.json();
+        if(result.statusCode !== 200){
+            throw Error(result.message)
+        }
+        return result.data
+
+    }catch(error){
+        throw error;
+    }
+}
