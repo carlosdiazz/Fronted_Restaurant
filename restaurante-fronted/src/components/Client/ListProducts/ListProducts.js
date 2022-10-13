@@ -29,7 +29,7 @@ export function ListProducts(props) {
             <Image src={product.img_url} size='small' />
           </div>
           <span>{product.name}</span>
-          <span>{product.price} €</span>
+          <span>{product.price} $RD</span>
           <Button primary icon onClick={() => addCart(product)}>
             <Icon name='add'/>
           </Button>
