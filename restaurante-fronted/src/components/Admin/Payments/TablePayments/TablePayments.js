@@ -47,7 +47,7 @@ export function TablePayments(props) {
                 <Table.HeaderCell>Fecha - Hora de pago</Table.HeaderCell>
                 <Table.HeaderCell >Informacion</Table.HeaderCell>
                 <Table.HeaderCell textAlign='right' width={1}>
-                    <Search value={searchMetodoPago} showNoResults={false} onSearchChange={cambiar_input}  placeholder="Filtrar por productos"/>
+                    <Search value={searchMetodoPago} showNoResults={false} onSearchChange={cambiar_input}  placeholder="Filtrar por Pago"/>
                 </Table.HeaderCell>
             </Table.Row>
         </Table.Header>

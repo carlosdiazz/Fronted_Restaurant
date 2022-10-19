@@ -1,16 +1,23 @@
 import React,{useState} from 'react'
-import {Table, Image, Button, Icon, Input} from 'semantic-ui-react'
+import {Table, Image, Button, Icon, Input, Search} from 'semantic-ui-react'
 import {map} from 'lodash'
 
 export function TableInventoryAdmin(props) {
 
     const {products, updateProductInventory, refetch} = props
 
-    const [stock, setstock] = useState(0)
+    const [stock, setstock] = useState()
+
+    const [searchProduct, setSearchProduct] = useState('')
+
 
     const cambiar_input = (value) => {
-        setstock(parseInt(value.target.value))
+      setstock(parseInt(value.target.value))
     }
+
+    const cambiar_input_search = (value) => {
+      setSearchProduct(value.target.value)
+  }
 
 
     return (
@@ -22,11 +29,15 @@ export function TableInventoryAdmin(props) {
               <Table.HeaderCell>Stock</Table.HeaderCell>
               <Table.HeaderCell>Activo</Table.HeaderCell>
               <Table.HeaderCell>Agregar</Table.HeaderCell>
-              <Table.HeaderCell width={1}><Input  type='number' value={stock}  onChange={cambiar_input }/></Table.HeaderCell>
+              <Table.HeaderCell textAlign='right' width={1}>
+                <Search value={searchProduct} showNoResults={false} onSearchChange={cambiar_input_search}  placeholder="Filtrar por productos" /> 
+              </Table.HeaderCell>
+              <Table.HeaderCell width={1}><Input  type='number' value={stock}  onChange={cambiar_input }  placeholder="Ingrese Cantidad" /></Table.HeaderCell>
             </Table.Row>
           </Table.Header>
-          <Table.Body>
-        {map(products, (product, index )  => (
+        <Table.Body>
+
+        {map(products, (product, index )  =>  product.name.includes(searchProduct) ? (
           <Table.Row key={index}>
             <Table.Cell width={3}>
               <Image src={product.img_url} />
@@ -37,8 +48,11 @@ export function TableInventoryAdmin(props) {
                 {product.is_active ? <Icon name='check'/> : <Icon name="close" />}
             </Table.Cell>
             <Actions product={product} updateProductInventory={updateProductInventory} stock={stock} refetch={refetch}/>
+            <Table.Cell></Table.Cell>
+            <Table.Cell></Table.Cell>
           </Table.Row>
-        ))}
+          
+        ):null)}
 
       </Table.Body>
 
