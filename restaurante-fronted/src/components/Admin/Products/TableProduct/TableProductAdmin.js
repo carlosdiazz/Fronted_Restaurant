@@ -1,11 +1,17 @@
-import React from 'react'
-import {Table, Image, Button, Icon} from 'semantic-ui-react'
-import {map} from 'lodash'
+import React,{useState} from 'react'
+import {Table, Image, Button, Icon, Search} from 'semantic-ui-react'
+import {map, filter} from 'lodash'
 import './TableProductAdmin.scss'
 
 export  function TableProductAdmin(props) {
 
   const {products, updateProduct, deleteProduct} = props;
+
+  const [searchProduct, setSearchProduct] = useState('')
+
+  const cambiar_input = (value) => {
+    setSearchProduct(value.target.value)
+}
 
   return (
     <Table className='table-product-admin' color='teal'>
@@ -18,12 +24,12 @@ export  function TableProductAdmin(props) {
           <Table.HeaderCell>Categoria</Table.HeaderCell>
           <Table.HeaderCell>Stock</Table.HeaderCell>
           <Table.HeaderCell>Activo</Table.HeaderCell>
-          <Table.HeaderCell></Table.HeaderCell>
+          <Table.HeaderCell textAlign='right'> <Search value={searchProduct} showNoResults={false} onSearchChange={cambiar_input}  placeholder="Filtrar por productos"></Search> </Table.HeaderCell>
         </Table.Row>
       </Table.Header>
 
       <Table.Body>
-        {map(products, (product, index )  => (
+        {map(products, (product, index )  => product.name.includes(searchProduct) ? (
           <Table.Row key={index}>
             <Table.Cell width={2}>
               <Image src={product.img_url} />
@@ -38,7 +44,9 @@ export  function TableProductAdmin(props) {
             </Table.Cell>
             <Actions product={product} updateProduct={updateProduct} deleteProduct={deleteProduct}/>
           </Table.Row>
-        ))}
+        ):null
+        
+        )}
 
       </Table.Body>
     </Table>

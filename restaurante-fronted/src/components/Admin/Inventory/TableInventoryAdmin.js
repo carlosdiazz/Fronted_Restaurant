@@ -22,10 +22,9 @@ export function TableInventoryAdmin(props) {
               <Table.HeaderCell>Stock</Table.HeaderCell>
               <Table.HeaderCell>Activo</Table.HeaderCell>
               <Table.HeaderCell>Agregar</Table.HeaderCell>
-              <Table.HeaderCell width={1}><Input type='number' value={stock}  onChange={cambiar_input }></Input></Table.HeaderCell>
+              <Table.HeaderCell width={1}><Input  type='number' value={stock}  onChange={cambiar_input }/></Table.HeaderCell>
             </Table.Row>
           </Table.Header>
-        
           <Table.Body>
         {map(products, (product, index )  => (
           <Table.Row key={index}>

@@ -72,7 +72,9 @@ export function TableDetailsAdmin() {
     try{
         let totalPayment = 0
         forEach(orders, (order) => {
-          //! Aqui hacer la validacion si hay productos sin entreegar noi se puede pedir la orden
+          if(order.status === 'PENDING'){
+            throw Error("No se puede generar la cuenta si hay producto sin entregar")
+          }
           totalPayment += order.id_product.price
         })
         const paymentData = {

@@ -1,8 +1,9 @@
-import React from 'react'
+import React,{useState} from 'react'
 import {Table, Button, Icon} from 'semantic-ui-react'
 import {usePayment, useOrder} from '../../../../hooks'
 import './paymentDetails.scss'
 import {toast} from 'react-toastify'
+import {ModalConfirm} from '../../../Common/ModalConfirm'
 
 export function PaymentDetails(props) {
 
@@ -10,25 +11,29 @@ export function PaymentDetails(props) {
     const {closePayment} = usePayment()
     const {closeOrder} = useOrder()
 
+    const [showModalCerrar, setshowModalCerrar] = useState(false)
+
+
     const getIconPayment = (key) => {
         if(key === 'CARD') return "credit card"
         if(key === "CASH") return "money bill alternate"
         return null
     }
 
+    const showModal = () => {
+        setshowModalCerrar(!showModalCerrar)
+    }
 
     const onCloseTable = async () => {
-        const result = window.confirm("Estas seguro que deseas cerrar la mesa? ")
         try{
-            if(result){
-                await closePayment(payment._id)
-                for await(const order of orders){
-                    await closeOrder(order._id)
-                }
-                onReloadOrders()
-                openCloseModal()
-                toast.success('Pago cerrado')
+            await closePayment(payment._id)
+            for await(const order of orders){
+                await closeOrder(order._id)
             }
+            onReloadOrders()
+            openCloseModal()
+            toast.success('Pago cerrado')
+
         }catch(error){
             toast.error(error.message)
             console.log(error)
@@ -55,9 +60,18 @@ export function PaymentDetails(props) {
             </Table.Body>
         </Table>
 
-        <Button primary fluid onClick={onCloseTable} >
+        <Button primary fluid onClick={showModal} >
             Marcar como pagado y cerrar mesa
         </Button>
+
+        <ModalConfirm
+          title="Estas seguro que deseas cerrar la mesa"
+          show={showModalCerrar}
+          onCloseText="Si"
+          onClose={() => {setshowModalCerrar(false); onCloseTable()}}
+          onConfirmText="No"
+          onConfirm = {() => {setshowModalCerrar(false);}}
+        />
 
     </div>
   )
