@@ -7,6 +7,7 @@ import {ListOrderAdmin, PaymentDetails} from '../../components/Admin/TableDetail
 import {ModalBasic} from '../../components/Common'
 import {toast} from 'react-toastify'
 import {forEach, size} from 'lodash'
+import {ModalConfirm} from '../../components/Common'
 
 export function TableDetailsAdmin() {
 
@@ -20,8 +21,18 @@ export function TableDetailsAdmin() {
   const [showModal, setShowModal] = useState(false)
   const [paymentData, setPaymentData] = useState(null)
 
+
+  const [generarCuenta, setGenerarCuenta] = useState(false)
+  const [modalGenerarCuenta, setModalGenerarCuenta] = useState(false)
+
+  const [usarTarjeta, setUsarTarjeta] = useState(false)
+  const [modalTarjeta, setmodalTarjeta] = useState(false)
+
+
   const onReloadOrders = () => setReloadOrders((prev) => !prev)
   const openCloseModal = () => setShowModal((prev) => !prev)
+
+  console.log(generarCuenta)
 
   useEffect(() => {
     try{
@@ -48,22 +59,26 @@ export function TableDetailsAdmin() {
     })()
   }, [reloadOrders])
 
+  const showModall = () => {
+    setModalGenerarCuenta(true)
+    setmodalTarjeta(true)
+  }
 
 
   const onCreatePayment = async() => {
-    const result = window.confirm(`Estas seguro de generar la cuenta de la mesa? `)
+    setModalGenerarCuenta(false)
+    setmodalTarjeta(false)
+
     try{
-      if(result){
         let totalPayment = 0
         forEach(orders, (order) => {
+          //! Aqui hacer la validacion si hay productos sin entreegar noi se puede pedir la orden
           totalPayment += order.id_product.price
         })
-        const resultTypePayment = window.confirm(`Pagaras con tarjerta? `)
-
         const paymentData = {
           id_table: id,
           total_Payment: Number(totalPayment.toFixed(2)),
-          payment_Type: resultTypePayment ? 'CARD' : 'CASH',
+          payment_Type: usarTarjeta ? 'CARD' : 'CASH',
           status_Payment:"PENDING"
         }
         const payment = await createPayment(paymentData)
@@ -73,7 +88,6 @@ export function TableDetailsAdmin() {
         onReloadOrders()
         toast.success("Cuenta Generada")
 
-      }
     }catch(error){
       toast.error(error.message)
       console.log(error)
@@ -88,8 +102,27 @@ export function TableDetailsAdmin() {
         btnTitle={paymentData ? 'Ver Cuenta' : "Anadir pedido"}
         btnClick={openCloseModal}
         btnTitleTwo={!paymentData ? 'Generar Cuenta' : null}
-        btnClickTwo={onCreatePayment}
+        btnClickTwo={showModall}
       />
+
+        <ModalConfirm
+          title="Estas seguro que deseas generar la cuenta?"
+          show={modalGenerarCuenta}
+          onCloseText="Si"
+          onClose={() => {setGenerarCuenta(true); onCreatePayment()}}
+          onConfirmText="No"
+          onConfirm = {() => setModalGenerarCuenta(!modalGenerarCuenta)}
+        />
+
+        <ModalConfirm
+          title="Deseas pagar con tarjerta o efectivo"
+          show={modalTarjeta}
+          onCloseText="Tarjerta"
+          onClose={() => {setmodalTarjeta(!modalTarjeta); setUsarTarjeta(true)}}
+          onConfirmText="Efectivo"
+          onConfirm = {() => {setmodalTarjeta(!modalTarjeta); setUsarTarjeta(false)}}
+        />
+
         { loading
           ? (<Loader active inline='centered'>Cargando</Loader>)
           : <ListOrderAdmin orders={orders} onReloadOrders={onReloadOrders}/>

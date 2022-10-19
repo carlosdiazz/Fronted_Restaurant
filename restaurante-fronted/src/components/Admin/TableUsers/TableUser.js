@@ -10,7 +10,7 @@ export  function TableUser(props) {
   
   
     return (
-    <Table className='table-users-admin'>
+    <Table className='table-users-admin' color='teal'>
         <Table.Header>
             <TableRow>
                 <Table.HeaderCell>Nickname</Table.HeaderCell>

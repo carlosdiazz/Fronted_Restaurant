@@ -9,7 +9,7 @@ export  function TableCategoryAdmi(props) {
   const {categories, updateCategory, deleteCategory} = props;
 
     return (
-        <Table className='table-category-admin'>
+        <Table className='table-category-admin' color='teal'>
             <Table.Header>
                 <Table.Row>
                     <Table.HeaderCell>Imagen</Table.HeaderCell>

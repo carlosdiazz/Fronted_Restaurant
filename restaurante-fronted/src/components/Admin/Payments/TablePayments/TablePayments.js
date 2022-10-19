@@ -31,7 +31,7 @@ export function TablePayments(props) {
 
   return (
     <>
-    <Table className='table-payments-admin'>
+    <Table className='table-payments-admin' color='green'>
         <Table.Header>
             <Table.Row>
                 <Table.HeaderCell>Id</Table.HeaderCell>

@@ -14,7 +14,7 @@ export function TableInventoryAdmin(props) {
 
 
     return (
-        <Table className='table-product-admin'>
+        <Table className='table-product-admin' color='teal' >
           <Table.Header>
             <Table.Row>
               <Table.HeaderCell>Imagen</Table.HeaderCell>
@@ -52,14 +52,16 @@ export function TableInventoryAdmin(props) {
         const {product, updateProductInventory, stock, refetch} = props;
 
         const update = async () => {
-            console.log(product)
+          if(stock >0){
             await updateProductInventory(product._id, stock)
             refetch()
+          }
+
         }
 
         return (
           <Table.Cell >
-            <Button icon onClick={update}>
+            <Button icon onClick={update} color="green">
               <Icon name='add' />
             </Button>
           

@@ -8,7 +8,7 @@ export  function TableProductAdmin(props) {
   const {products, updateProduct, deleteProduct} = props;
 
   return (
-    <Table className='table-product-admin'>
+    <Table className='table-product-admin' color='teal'>
       <Table.Header>
         <Table.Row>
           <Table.HeaderCell>Imagen</Table.HeaderCell>

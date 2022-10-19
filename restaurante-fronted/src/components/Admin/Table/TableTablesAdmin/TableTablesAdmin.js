@@ -27,7 +27,7 @@ export function TableTablesAdmin(props) {
 
   return (
     <>
-    <Table className='table-tables-admin'>
+    <Table className='table-tables-admin' color='teal'>
         <Table.Header>
           <Table.Row>
             <Table.HeaderCell>Nombre mesa</Table.HeaderCell>
