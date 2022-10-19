@@ -5,7 +5,7 @@ import moment from 'moment'
 import "moment/locale/es-do"
 import './OrderItemAdmin.scss'
 import {ORDER_Status} from '../../../../utils/constansts'
-import {useOrder} from '../../../../hooks'
+import {useOrder, useProduct} from '../../../../hooks'
 import {toast} from 'react-toastify'
 
 export function OrderItemAdmin(props) {
@@ -13,10 +13,13 @@ export function OrderItemAdmin(props) {
   const {order, onReloadOrders} = props;
 
   const {checkDeliveredOrder, deleteOrdeById} = useOrder()
+  const {updateProductInventory} = useProduct()
 
     const onCheckDeliveredOrder = async() => {
         try{
+            console.log(order)
             await checkDeliveredOrder(order._id)
+            await updateProductInventory(order.id_product._id, -1)
             onReloadOrders()
             toast.success("Producto entregado")
         }catch(error){

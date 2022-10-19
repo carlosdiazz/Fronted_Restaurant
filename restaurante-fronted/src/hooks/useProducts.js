@@ -70,6 +70,23 @@ export const useProduct = () => {
         }
     }
 
+    const updateProductInventory = async (id, stock) => {
+        try {
+            setLoading(true)
+
+            const data = {
+                stock:stock
+            }
+            await updateProductApi(id, data, auth.token)
+            setLoading(false)
+        } catch (error) {
+            setLoading(false)
+            setError(error)
+            throw error
+        }
+    }
+
+
     const deleteProduct = async(id) => {
         try{
             setLoading(true)
@@ -120,6 +137,7 @@ export const useProduct = () => {
         deleteProduct,
         getProductById,
         getProductsTables,
-        getProductByCategory
+        getProductByCategory,
+        updateProductInventory
     }
 }

@@ -45,6 +45,17 @@ function MenuLeft(props) {
                     <Icon name="folder"/>Categorias
                 </h3>
             </Menu.Item>
+            <Menu.Item as={Link} to={'/admin/inventory-history'} active={pathname === "/admin-inventory-history"}>
+                <h3>
+                    <Icon name="history"/>Historial de Inventarios
+                </h3>
+            </Menu.Item>
+
+            <Menu.Item as={Link} to={'/admin/inventory'} active={pathname === "/admin/inventory"}>
+                <h3>
+                    <Icon name="sync"/>Inventario
+                </h3>
+            </Menu.Item>
 
             <Menu.Item as={Link} to={'/admin/products'} active={pathname === "/admin/products"}>
                 <h3>
