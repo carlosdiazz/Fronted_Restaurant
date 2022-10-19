@@ -8,6 +8,7 @@ import {ModalBasic} from '../../components/Common'
 import {toast} from 'react-toastify'
 import {forEach, size} from 'lodash'
 import {ModalConfirm} from '../../components/Common'
+import jsPDF from 'jspdf'
 
 export function TableDetailsAdmin() {
 
@@ -31,8 +32,6 @@ export function TableDetailsAdmin() {
 
   const onReloadOrders = () => setReloadOrders((prev) => !prev)
   const openCloseModal = () => setShowModal((prev) => !prev)
-
-  console.log(generarCuenta)
 
   useEffect(() => {
     try{
@@ -64,6 +63,14 @@ export function TableDetailsAdmin() {
     setmodalTarjeta(true)
   }
 
+  const generatePDF = () => {
+    let doc = new jsPDF('p',"pt","a4");
+    doc.html(document.querySelector('#payment-detail2'),{
+      callback: function(pdf) {
+        pdf.save('reporte.pdf')
+      }
+    })
+}
 
   const onCreatePayment = async() => {
     setModalGenerarCuenta(false)
@@ -138,6 +145,7 @@ export function TableDetailsAdmin() {
                 orders={orders}
                 openCloseModal={openCloseModal}
                 onReloadOrders={onReloadOrders}
+                generatePDF={generatePDF}
               />)
 
             : (<AddOrderForm

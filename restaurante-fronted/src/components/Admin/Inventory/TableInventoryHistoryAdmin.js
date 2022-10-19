@@ -3,6 +3,8 @@ import {Table, Search} from 'semantic-ui-react'
 import {map} from 'lodash'
 import moment from 'moment'
 
+import './TableInventoryHistory.scss'
+
 export function TableInventoryHistoryAdmin(props) {
 
     const {inventarios} = props
@@ -15,6 +17,9 @@ export function TableInventoryHistoryAdmin(props) {
 
     return (
         <>
+        <Search value={searchProduct} showNoResults={false} onSearchChange={cambiar_input}  placeholder="Filtrar por productos" />
+        <div id="content">
+        <h3>Historial de Inventarios </h3>
         <Table className='table-payments-admin' color='green'>
             <Table.Header>
                 <Table.Row>
@@ -23,7 +28,6 @@ export function TableInventoryHistoryAdmin(props) {
                     <Table.HeaderCell>Movimiento</Table.HeaderCell>
                     <Table.HeaderCell>Tipo de Movimiento</Table.HeaderCell>
                     <Table.HeaderCell>Fecha</Table.HeaderCell>
-                    <Table.HeaderCell textAlign='right' width={1}> <Search value={searchProduct} showNoResults={false} onSearchChange={cambiar_input}  placeholder="Filtrar por productos"></Search> </Table.HeaderCell>
                 </Table.Row>
             </Table.Header>
 
@@ -37,7 +41,6 @@ export function TableInventoryHistoryAdmin(props) {
                         <Table.Cell>{inventario.movimiento}</Table.Cell>
                         <Table.Cell>{inventario.tipo_movimiento}</Table.Cell>
                         <Table.Cell>{moment(inventario.createdAt).format("DD/MM/YYYY - LT")}</Table.Cell>
-                        <Table.Cell></Table.Cell>
 
                     </Table.Row>
                 ):null)
@@ -46,6 +49,7 @@ export function TableInventoryHistoryAdmin(props) {
 
         </Table>
 
+        </div>
         </>
       )
 }
