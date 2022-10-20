@@ -21,6 +21,22 @@ export function TableInventoryAdmin(props) {
 
 
     return (
+
+      <>
+
+      <Table>
+            <Table.Header>
+                <Table.Row>
+                  <Table.HeaderCell textAlign='left' width={1}>
+                  <Search value={searchProduct} showNoResults={false} onSearchChange={cambiar_input_search}  placeholder="Filtrar por productos" /> 
+                  </Table.HeaderCell>
+                  <Table.HeaderCell textAlign='right' width={1}><Input  type='number' value={stock}  onChange={cambiar_input }  placeholder="Ingrese Cantidad" /></Table.HeaderCell>
+
+                </Table.Row>
+              </Table.Header>
+      </Table>
+
+
         <Table className='table-product-admin' color='teal' >
           <Table.Header>
             <Table.Row>
@@ -29,10 +45,6 @@ export function TableInventoryAdmin(props) {
               <Table.HeaderCell>Stock</Table.HeaderCell>
               <Table.HeaderCell>Activo</Table.HeaderCell>
               <Table.HeaderCell>Agregar</Table.HeaderCell>
-              <Table.HeaderCell textAlign='right' width={1}>
-                <Search value={searchProduct} showNoResults={false} onSearchChange={cambiar_input_search}  placeholder="Filtrar por productos" /> 
-              </Table.HeaderCell>
-              <Table.HeaderCell width={1}><Input  type='number' value={stock}  onChange={cambiar_input }  placeholder="Ingrese Cantidad" /></Table.HeaderCell>
             </Table.Row>
           </Table.Header>
         <Table.Body>
@@ -48,15 +60,14 @@ export function TableInventoryAdmin(props) {
                 {product.is_active ? <Icon name='check'/> : <Icon name="close" />}
             </Table.Cell>
             <Actions product={product} updateProductInventory={updateProductInventory} stock={stock} refetch={refetch}/>
-            <Table.Cell></Table.Cell>
-            <Table.Cell></Table.Cell>
+
           </Table.Row>
-          
         ):null)}
 
       </Table.Body>
 
         </Table>
+        </>
       );
     }
 
@@ -77,10 +88,7 @@ export function TableInventoryAdmin(props) {
             <Button icon onClick={update} color="green">
               <Icon name='add' />
             </Button>
-          
           </Table.Cell>
         )
-      
-      
       }
 

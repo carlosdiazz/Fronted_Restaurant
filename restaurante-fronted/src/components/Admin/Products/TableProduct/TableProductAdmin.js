@@ -9,11 +9,33 @@ export  function TableProductAdmin(props) {
 
   const [searchProduct, setSearchProduct] = useState('')
 
-  const cambiar_input = (value) => {
-    setSearchProduct(value.target.value)
-}
+  const [searchCategory, setSearchCategory] = useState('')
 
+  const cambiar_input_Product = (value) => {
+    setSearchProduct(value.target.value)
+  }
+
+  const cambiar_input_Category = (value) => {
+    setSearchCategory(value.target.value)
+  }
+
+  
   return (
+    <>
+    <Table>
+    <Table.Header>
+        <Table.Row>
+          <Table.HeaderCell textAlign='left' width={1}>
+            <Search value={searchProduct} showNoResults={false} onSearchChange={cambiar_input_Product}  placeholder="Filtrar por productos" />
+          </Table.HeaderCell>
+          <Table.HeaderCell >
+            <Search value={searchCategory} width={1} textAlign='left' showNoResults={false} onSearchChange={cambiar_input_Category}  placeholder="Filtrar por categorias" />
+          </Table.HeaderCell>
+
+        </Table.Row>
+      </Table.Header>
+    </Table>
+
     <Table className='table-product-admin' color='teal'>
       <Table.Header>
         <Table.Row>
@@ -24,12 +46,17 @@ export  function TableProductAdmin(props) {
           <Table.HeaderCell>Categoria</Table.HeaderCell>
           <Table.HeaderCell>Stock</Table.HeaderCell>
           <Table.HeaderCell>Activo</Table.HeaderCell>
-          <Table.HeaderCell textAlign='right'> <Search value={searchProduct} showNoResults={false} onSearchChange={cambiar_input}  placeholder="Filtrar por productos"></Search> </Table.HeaderCell>
+          <Table.HeaderCell></Table.HeaderCell>
         </Table.Row>
       </Table.Header>
 
       <Table.Body>
-        {map(products, (product, index )  => product.name.includes(searchProduct) ? (
+        {map(products, (product, index )  =>
+
+          product.name.includes(searchProduct) ?
+
+          product.id_category?.name.includes(searchCategory) ?
+        (
           <Table.Row key={index}>
             <Table.Cell width={2}>
               <Image src={product.img_url} />
@@ -44,12 +71,12 @@ export  function TableProductAdmin(props) {
             </Table.Cell>
             <Actions product={product} updateProduct={updateProduct} deleteProduct={deleteProduct}/>
           </Table.Row>
-        ):null
-        
-        )}
+        ):null :null)}
+
 
       </Table.Body>
     </Table>
+    </>
   );
 }
 
