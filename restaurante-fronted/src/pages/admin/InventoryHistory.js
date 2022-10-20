@@ -25,8 +25,17 @@ export function InventoryHistory() {
             pdf.save('reporte.pdf')
         }
     })
+  }
 
-}
+  const generatePDF2 = () => {
+    let doc = new jsPDF('p',"pt","a1");
+    doc.html(document.querySelector('#content'),{
+        
+        callback: function(pdf) {
+            pdf.save('reporte.pdf')
+        }
+    })
+  }
 
 
   return (
