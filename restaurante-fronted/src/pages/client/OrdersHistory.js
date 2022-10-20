@@ -97,7 +97,7 @@ export function OrdersHistory() {
             </>
           )
     }
-    
+
     <ModalConfirm
       title="Pagar con tarjerta o efectivo"
       show={showTypePayment}
