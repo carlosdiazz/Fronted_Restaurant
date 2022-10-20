@@ -53,7 +53,7 @@ export  function CategoriaAdmin() {
     <>
         <HeaderPages
             title ='Categorias'
-            btnTitle = 'Nueva Categoria'
+            btnTitle = 'Crear nueva Categoria'
             btnClick = {addCategory}
         />
         {

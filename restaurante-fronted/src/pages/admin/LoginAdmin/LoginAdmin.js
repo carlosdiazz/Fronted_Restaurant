@@ -71,6 +71,5 @@ export function LoginAdmin() {
     <div class="bubble"></div>
   </div>
     </div>
-    
   );
 }

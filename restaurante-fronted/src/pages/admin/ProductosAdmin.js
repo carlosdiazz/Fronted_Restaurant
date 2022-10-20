@@ -51,7 +51,7 @@ export function ProductosAdmin() {
 
   return (
     <div>
-        <HeaderPages title='Productos' btnTitle='Nuevo Producto' btnClick={addProduct} />
+        <HeaderPages title='Productos' btnTitle='Crear nuevo Producto' btnClick={addProduct} />
         {
           loading
           ? (<Loader active inline='centered'>Cargando...</Loader>)

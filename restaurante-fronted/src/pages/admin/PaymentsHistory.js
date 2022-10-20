@@ -18,7 +18,7 @@ export function PaymentsHistory() {
 
   return (
     <>
-      <HeaderPages title="Historial de pagos" />
+      <HeaderPages title="Historial de pagos" btnTitle="Generar Reporte"/>
       {
         loading
           ? (<Loader active inline='centered'>Cargando</Loader>)

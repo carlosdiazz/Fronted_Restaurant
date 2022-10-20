@@ -15,9 +15,14 @@ export function TablePayments(props) {
     const {payments} = props
 
     const [searchMetodoPago, setsearchMetodoPago] = useState('')
+    const [searchMesa, setsearchMesa] = useState('')
 
     const cambiar_input = (value) => {
         setsearchMetodoPago(value.target.value)
+    }
+
+    const cambiar_input_Mesa = (value) => {
+        setsearchMesa(value.target.value)
     }
 
     const getIconPaymentName = (key) => {
@@ -37,6 +42,21 @@ export function TablePayments(props) {
 
   return (
     <>
+
+    <Table>
+            <Table.Header>
+                <Table.Row>
+                  <Table.HeaderCell textAlign='left' width={1}>
+                    <Search value={searchMetodoPago} showNoResults={false} onSearchChange={cambiar_input}  placeholder="Filtrar Metodo de Pago"/>
+                  </Table.HeaderCell>
+                  <Table.HeaderCell >
+                    <Search value={searchMesa} showNoResults={false} onSearchChange={cambiar_input_Mesa}  placeholder="Filtrar Por Mesa"/>
+                  </Table.HeaderCell>
+                </Table.Row>
+              </Table.Header>
+    </Table>
+
+
     <Table className='table-payments-admin' color='green'>
         <Table.Header>
             <Table.Row>
@@ -46,15 +66,16 @@ export function TablePayments(props) {
                 <Table.HeaderCell>Tipo de pago</Table.HeaderCell>
                 <Table.HeaderCell>Fecha - Hora de pago</Table.HeaderCell>
                 <Table.HeaderCell >Informacion</Table.HeaderCell>
-                <Table.HeaderCell textAlign='right' width={1}>
-                    <Search value={searchMetodoPago} showNoResults={false} onSearchChange={cambiar_input}  placeholder="Filtrar por Pago"/>
-                </Table.HeaderCell>
+
             </Table.Row>
         </Table.Header>
 
         <Table.Body>
             {
-                map(payments, (payment, index) => payment.payment_Type.includes(searchMetodoPago) ? (
+                map(payments, (payment, index) =>
+                    payment.payment_Type.includes(searchMetodoPago) ?
+                    payment?.id_table?.number.toString().includes(searchMesa)?
+                    (
                     <Table.Row key={index}>
                         <Table.Cell>{payment._id}</Table.Cell>
                         <Table.Cell>{payment?.id_table?.number}</Table.Cell>
@@ -69,9 +90,8 @@ export function TablePayments(props) {
                                 <Icon name='eye'></Icon>
                             </Button>
                         </Table.Cell>
-                        <Table.Cell></Table.Cell>
                     </Table.Row>
-                ):null)
+                ):null:null)
             }
         </Table.Body>
 

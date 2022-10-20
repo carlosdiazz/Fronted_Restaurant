@@ -49,7 +49,7 @@ export function MesasAdmin() {
 
   return (
     <>
-      <HeaderPages title="Mesas" btnTitle="Crear nueva pagina" btnClick={addTable}></HeaderPages>
+      <HeaderPages title="Mesas" btnTitle="Crear nueva mesa" btnClick={addTable}></HeaderPages>
       {
         loading
         ? (<Loader active inline='centered'>Cargando...</Loader>)
