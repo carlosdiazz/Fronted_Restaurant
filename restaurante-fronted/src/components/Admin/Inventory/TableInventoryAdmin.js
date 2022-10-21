@@ -9,6 +9,7 @@ export function TableInventoryAdmin(props) {
     const [stock, setstock] = useState()
 
     const [searchProduct, setSearchProduct] = useState('')
+    const [searchCategory, setsearchCategory] = useState('')
 
 
     const cambiar_input = (value) => {
@@ -19,6 +20,9 @@ export function TableInventoryAdmin(props) {
       setSearchProduct(value.target.value)
   }
 
+  const cambiar_input_search_Category = (value) => {
+    setsearchCategory(value.target.value)
+}
 
     return (
 
@@ -29,6 +33,9 @@ export function TableInventoryAdmin(props) {
                 <Table.Row>
                   <Table.HeaderCell textAlign='left' width={1}>
                   <Search value={searchProduct} showNoResults={false} onSearchChange={cambiar_input_search}  placeholder="Filtrar por productos" /> 
+                  </Table.HeaderCell>
+                  <Table.HeaderCell textAlign='left' width={1}>
+                  <Search value={searchCategory} showNoResults={false} onSearchChange={cambiar_input_search_Category}  placeholder="Filtrar por categorias" /> 
                   </Table.HeaderCell>
                   <Table.HeaderCell textAlign='right' width={1}><Input  type='number' value={stock}  onChange={cambiar_input }  placeholder="Ingrese Cantidad" /></Table.HeaderCell>
 
@@ -42,6 +49,7 @@ export function TableInventoryAdmin(props) {
             <Table.Row>
               <Table.HeaderCell>Imagen</Table.HeaderCell>
               <Table.HeaderCell>Producto</Table.HeaderCell>
+              <Table.HeaderCell>Categoria</Table.HeaderCell>
               <Table.HeaderCell>Stock</Table.HeaderCell>
               <Table.HeaderCell>Activo</Table.HeaderCell>
               <Table.HeaderCell>Agregar</Table.HeaderCell>
@@ -49,12 +57,16 @@ export function TableInventoryAdmin(props) {
           </Table.Header>
         <Table.Body>
 
-        {map(products, (product, index )  =>  product.name.includes(searchProduct) ? (
+        {map(products, (product, index )  =>
+          product.name.includes(searchProduct) ?
+          product.id_category?.name.includes(searchCategory) ?
+        (
           <Table.Row key={index}>
             <Table.Cell width={3}>
               <Image src={product.img_url} />
             </Table.Cell>
             <Table.Cell>{product.name}</Table.Cell>
+            <Table.Cell>{product.id_category?.name || 'Null'}</Table.Cell>
             <Table.Cell>{product.stock}</Table.Cell>
             <Table.Cell className='status'>
                 {product.is_active ? <Icon name='check'/> : <Icon name="close" />}
@@ -62,7 +74,7 @@ export function TableInventoryAdmin(props) {
             <Actions product={product} updateProductInventory={updateProductInventory} stock={stock} refetch={refetch}/>
 
           </Table.Row>
-        ):null)}
+        ):null:null)}
 
       </Table.Body>
 
