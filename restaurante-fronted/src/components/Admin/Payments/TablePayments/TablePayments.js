@@ -56,7 +56,8 @@ export function TablePayments(props) {
               </Table.Header>
     </Table>
 
-
+    <div id="payment">
+    <h3>Historial de pagos</h3>
     <Table className='table-payments-admin' color='green'>
         <Table.Header>
             <Table.Row>
@@ -96,7 +97,7 @@ export function TablePayments(props) {
         </Table.Body>
 
     </Table>
-
+    </div>
     <ModalBasic
         show={showModal}
         onClose={openCloseModal}

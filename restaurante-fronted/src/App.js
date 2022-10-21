@@ -9,8 +9,8 @@ export default function App() {
         <Navigation />
 
         <ToastContainer
-          position='top-center'
-          autoClose={5000}
+          position='bottom-center'
+          autoClose={3000}
           hideProgressBar
           newestOnTop
           closeOnClick

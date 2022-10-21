@@ -19,7 +19,6 @@ export  function TableProductAdmin(props) {
     setSearchCategory(value.target.value)
   }
 
-  
   return (
     <>
     <Table>
