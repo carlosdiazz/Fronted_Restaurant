@@ -1,4 +1,3 @@
-import { size } from 'lodash'
 import React from 'react'
 import { Modal } from 'semantic-ui-react'
 import './ModalBasic.scss'
