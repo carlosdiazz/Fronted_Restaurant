@@ -1,7 +1,12 @@
 import React,{useState, useEffect} from 'react'
 import {HeaderPages, TableInventoryAdmin } from '../../components/Admin'
 import {Loader} from 'semantic-ui-react'
-import {useProduct} from '../../hooks'
+import jsPDF from 'jspdf'
+import 'jspdf-autotable';
+
+import { useProduct } from '../../hooks'
+
+
 
 export function InventoryAdmin() {
 
@@ -11,6 +16,12 @@ export function InventoryAdmin() {
 
   const {loading, products, getProducts, updateProductInventory} = useProduct()
 
+  const generatePDF = () => {
+    let doc = new jsPDF('p', "pt", "a4");
+    //doc.text('Reporte')
+    doc.autoTable({html: '#Inventario', })
+    doc.save("reporte.pdf")
+  }
 
   useEffect(() => {
     try{
@@ -25,15 +36,15 @@ export function InventoryAdmin() {
 
   return (
     <>
-        <HeaderPages title="Inventario" />
+      <HeaderPages title="Inventario" btnTitleTwo="Imprimir PDF" btnClickTwo={generatePDF} />
         {
           loading
           ? (<Loader active inline='centered'>Cargando...</Loader>)
           : <TableInventoryAdmin
-          products={products}
-          updateProductInventory={updateProductInventory}
-          refetch={onRefetch}
-          />
+              products={products}
+              updateProductInventory={updateProductInventory}
+              refetch={onRefetch}
+            />
         }
     </>
   )

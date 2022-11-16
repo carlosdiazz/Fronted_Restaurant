@@ -27,7 +27,7 @@ export function MesasAdmin() {
   }
 
   const updateTable = (data) => {
-    setTitleModal('Actualziar Mesa')
+    setTitleModal('Actualizar Mesa')
     setContentModal(<AddEditTableForm onClose={openCloseModal} onRefetch={onRefetch} table={data}/>)
     openCloseModal()
   }

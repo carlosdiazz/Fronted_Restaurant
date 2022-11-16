@@ -9,6 +9,7 @@ import {toast} from 'react-toastify'
 import {forEach, size} from 'lodash'
 import {ModalConfirm} from '../../components/Common'
 import jsPDF from 'jspdf'
+import 'jspdf-autotable';
 
 export function TableDetailsAdmin() {
 
@@ -64,12 +65,9 @@ export function TableDetailsAdmin() {
   }
 
   const generatePDF = () => {
-    let doc = new jsPDF('p',"pt","a4");
-    doc.html(document.querySelector('#payment-detail2'),{
-      callback: function(pdf) {
-        pdf.save('reporte.pdf')
-      }
-    })
+    let doc = new jsPDF('p', "pt", "a6");
+    doc.autoTable({html: '#payment_detail_NEW' })
+    doc.save("factura.pdf")
 }
 
   const onCreatePayment = async() => {
@@ -107,7 +105,7 @@ export function TableDetailsAdmin() {
   return (
     <>
       <HeaderPages
-        title={`Mesa ${table?.number || ''}`}
+        title={`Numero ${table?.number || ''} - ${table?.name || ''}`}
         btnTitle={paymentData ? 'Ver Cuenta' : "Anadir pedido"}
         btnClick={openCloseModal}
         btnTitleTwo={!paymentData ? 'Generar Cuenta' : null}

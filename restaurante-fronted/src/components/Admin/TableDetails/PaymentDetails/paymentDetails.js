@@ -45,10 +45,10 @@ export function PaymentDetails(props) {
 
     return (
     <div >
-        <div id="payment-detail2">
+        <div >
         <h3>Factura</h3>
 
-        <Table >
+        <Table id="payment_detail_NEW">
             <Table.Body>
                 <Table.Row>
                     <Table.Cell><b>Mesa: </b></Table.Cell>
@@ -65,12 +65,11 @@ export function PaymentDetails(props) {
                 {
                     map(orders, (order) => (
                         <Table.Row>
-                            <Table.Cell>-- {order?.id_product?.name}</Table.Cell>
+                            <Table.Cell>* {order?.id_product?.name}</Table.Cell>
                             <Table.Cell>{order?.id_product?.price} $RD</Table.Cell>
                         </Table.Row>
                     ))
                 }
-                
                 <Table.Row>
                     <Table.Cell><b>Total:</b></Table.Cell>
                     <Table.Cell><b>{payment?.total_Payment} $RD</b></Table.Cell>

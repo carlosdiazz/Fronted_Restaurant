@@ -3,6 +3,7 @@ import { HeaderPages, TableInventoryHistoryAdmin } from '../../components/Admin'
 import {useInventory} from '../../hooks'
 import {Loader}from 'semantic-ui-react'
 import jsPDF from 'jspdf'
+import 'jspdf-autotable';
 
 export function InventoryHistory() {
 
@@ -19,23 +20,11 @@ export function InventoryHistory() {
   }, [])
 
   const generatePDF = () => {
-    let doc = new jsPDF('p',"pt","a1");
-    doc.html(document.querySelector('#content'),{
-        callback: function(pdf) {
-            pdf.save('reporte.pdf')
-        }
-    })
-  }
-
-  const generatePDF2 = () => {
-    let doc = new jsPDF('p',"pt","a1");
-    doc.html(document.querySelector('#content'),{
-        
-        callback: function(pdf) {
-            pdf.save('reporte.pdf')
-        }
-    })
-  }
+    let doc = new jsPDF('p', "pt", "a4");
+    //doc.text('Reporte')
+    doc.autoTable({html: '#content', useCss: true, })
+    doc.save("reporte.pdf")
+}
 
 
   return (

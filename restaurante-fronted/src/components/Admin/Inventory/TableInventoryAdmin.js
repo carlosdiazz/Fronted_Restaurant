@@ -44,7 +44,7 @@ export function TableInventoryAdmin(props) {
       </Table>
 
 
-        <Table className='table-product-admin' color='teal' >
+        <Table className='table-product-admin' color='teal' id='Inventario'>
           <Table.Header>
             <Table.Row>
               <Table.HeaderCell>Imagen</Table.HeaderCell>
@@ -69,7 +69,7 @@ export function TableInventoryAdmin(props) {
             <Table.Cell>{product.id_category?.name || 'Null'}</Table.Cell>
             <Table.Cell>{product.stock}</Table.Cell>
             <Table.Cell className='status'>
-                {product.is_active ? <Icon name='check'/> : <Icon name="close" />}
+                {product.is_active ? <Icon name='check'> SI</Icon> : <Icon name="close"> NO</Icon>}
             </Table.Cell>
             <Actions product={product} updateProductInventory={updateProductInventory} stock={stock} refetch={refetch}/>
 

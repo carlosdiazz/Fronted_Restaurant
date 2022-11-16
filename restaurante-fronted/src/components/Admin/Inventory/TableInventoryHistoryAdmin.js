@@ -38,12 +38,12 @@ export function TableInventoryHistoryAdmin(props) {
               </Table.Header>
         </Table>
 
-        <div id="content">
+        <div >
         <h3>Historial de Inventarios </h3>
-        <Table className='table-payments-admin' color='green'>
+        <Table id="content" className='table-payments-admin' color='green'>
             <Table.Header>
                 <Table.Row>
-                    <Table.HeaderCell>Id</Table.HeaderCell>
+
                     <Table.HeaderCell>Producto</Table.HeaderCell>
                     <Table.HeaderCell>Movimiento</Table.HeaderCell>
                     <Table.HeaderCell>Tipo de Movimiento</Table.HeaderCell>
@@ -59,7 +59,6 @@ export function TableInventoryHistoryAdmin(props) {
                     inventario?.tipo_movimiento.includes(searchMovimiento) ?
                     (
                     <Table.Row key={index}>
-                        <Table.Cell>{inventario._id}</Table.Cell>
                         <Table.Cell>{inventario?.id_product?.name}</Table.Cell>
                         <Table.Cell>{inventario.movimiento}</Table.Cell>
                         <Table.Cell>{inventario.tipo_movimiento}</Table.Cell>

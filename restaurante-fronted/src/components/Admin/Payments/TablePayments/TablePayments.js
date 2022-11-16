@@ -56,13 +56,13 @@ export function TablePayments(props) {
               </Table.Header>
     </Table>
 
-    <div id="payment">
+
     <h3>Historial de pagos</h3>
-    <Table className='table-payments-admin' color='green'>
+    <Table className='table-payments-admin' color='green' id="payment">
         <Table.Header>
-            <Table.Row>
-                <Table.HeaderCell>Id</Table.HeaderCell>
+                <Table.Row>
                 <Table.HeaderCell>Mesa</Table.HeaderCell>
+                <Table.HeaderCell>Numero Mesa</Table.HeaderCell>
                 <Table.HeaderCell>Total</Table.HeaderCell>
                 <Table.HeaderCell>Tipo de pago</Table.HeaderCell>
                 <Table.HeaderCell>Fecha - Hora de pago</Table.HeaderCell>
@@ -78,7 +78,7 @@ export function TablePayments(props) {
                     payment?.id_table?.number.toString().includes(searchMesa)?
                     (
                     <Table.Row key={index}>
-                        <Table.Cell>{payment._id}</Table.Cell>
+                        <Table.Cell>{payment?.id_table?.name}</Table.Cell>
                         <Table.Cell>{payment?.id_table?.number}</Table.Cell>
                         <Table.Cell>{payment.total_Payment} $RD</Table.Cell>
                         <Table.Cell>
@@ -97,7 +97,7 @@ export function TablePayments(props) {
         </Table.Body>
 
     </Table>
-    </div>
+
     <ModalBasic
         show={showModal}
         onClose={openCloseModal}

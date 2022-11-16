@@ -79,18 +79,30 @@ export const closePaymentApi = async(idPayment, token) => {
     }
 }
 
-export const getPaymentsApi = async(token) => {
+export const getPaymentsApi = async(data) => {
     try{
+        const {mesa, pago, fecha_inicio, fecha_final } = data
+        //const statusFilter = `status_Payment=${PAYMENT_STATUS.PAID}`
+        const orderingFilter = `orderCreated_At=DES`
 
-        const statusFilter = `status_Payment=${PAYMENT_STATUS.PAID}`
-        const orderingFilter = `orderCreated_At=ASC`
+        let url = `${BASE_API_URL}/payment?${orderingFilter}`
 
-        const url = `${BASE_API_URL}/payment?${statusFilter}&${orderingFilter}`
+        if (fecha_inicio && fecha_final) {
+            url=`${url}&date_inicial=${fecha_inicio}&date_final=${fecha_final}`
+        }
+
+        if (mesa) {
+            url=`${url}&id_table=${mesa}`
+        }
+
+        if (pago) {
+            url=`${url}&payment_Type=${pago}`
+        }
 
         const params = {
             method: 'Get',
             headers: {
-                Authorization: `Bearer ${token}`,
+                //Authorization: `Bearer ${token}`,
                 "Content-Type": "application/json"
             },
 

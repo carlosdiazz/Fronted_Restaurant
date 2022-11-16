@@ -1,34 +1,57 @@
-import React,{useEffect} from 'react'
-import { HeaderPages, TablePayments } from '../../components/Admin'
-import {usePayment} from '../../hooks'
+import React,{useEffect, useState} from 'react'
 import {Loader}from 'semantic-ui-react'
 import jsPDF from 'jspdf'
+import 'jspdf-autotable';
+import { map } from 'lodash';
+
+import { HeaderPages, TablePayments, PaymentModal } from '../../components/Admin'
+import {ModalBasic} from '../../components/Common/ModalBasic'
+import { usePayment, useTable } from '../../hooks'
+
 
 export function PaymentsHistory() {
 
-  const {loading, payments, getPayments} = usePayment()
+  const { loading, payments, getPayments } = usePayment()
+  const { getTables, tables } = useTable()
+  const [showModal, setshowModal] = useState(false)
+  const [tablesModal, setTablesModal] = useState([])
+
+  const openCloseModal = () => setshowModal((prev) => !prev)
 
   useEffect(() => {
     try{
-      getPayments()
+      getTables()
+      setTablesModal(formatDropdownData2(tables))
     }catch(error){
       console.log(error)
     }
 
-  }, [])
+  }, [showModal])
 
-  const generatePDF = () => {
-    let doc = new jsPDF('p',"pt","a1");
-    doc.html(document.querySelector('#payment'),{
-        callback: function(pdf) {
-            pdf.save('reporte.pdf')
-        }
-    })
-  }
+  const generarReporte = () => {
+    openCloseModal()
+}
+
+const generatePDF = () => {
+  let doc = new jsPDF('p', "pt", "a4");
+  //doc.text('Reporte')
+  doc.autoTable({html: '#payment', })
+  doc.save("reporte.pdf")
+}
 
   return (
     <>
-      <HeaderPages title="Pagos" btnTitle="Generar Reporte" btnClick={generatePDF}/>
+      <HeaderPages title="Pagos" btnTitle="Generar Reporte" btnClick={generarReporte} btnTitleTwo='Imprimir Reporte' btnClickTwo={generatePDF } />
+      <ModalBasic
+        show={showModal}
+        onClose={openCloseModal}
+        title={'Historial de Pagos'}
+        children={<PaymentModal
+          nombreMesas={tablesModal}
+          openCloseModal={openCloseModal}
+          getPayments={getPayments}
+        />}
+      />
       {
         loading
           ? (<Loader active inline='centered'>Cargando</Loader>)
@@ -36,4 +59,12 @@ export function PaymentsHistory() {
       }
     </>
   )
+}
+
+const formatDropdownData2 =(data) => {
+  return map(data,(item, index) => ({
+      key: item?._id || index,
+      text: item?.name,
+      value: item?._id
+  }))
 }

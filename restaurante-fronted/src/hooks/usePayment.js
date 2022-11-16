@@ -47,10 +47,10 @@ export const usePayment = () => {
         }
     }
 
-    const getPayments = async() => {
+    const getPayments = async(data) => {
         try{
             setLoading(true)
-            const response = await getPaymentsApi('')
+            const response = await getPaymentsApi(data)
             setLoading(false)
             setPayments(response)
 
