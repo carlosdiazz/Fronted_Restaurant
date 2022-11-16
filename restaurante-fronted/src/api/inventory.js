@@ -1,9 +1,23 @@
 import {BASE_API_URL} from '../config/config'
 
-export const getInventorysApi = async () => {
-    try{
+export const getInventorysApi = async (data) => {
+    try {
+        console.log(data)
+        let url = `${BASE_API_URL}/inventory`;
+        const { mesa, pago, fecha_inicio, fecha_final } = data;
 
-        const url = `${BASE_API_URL}/inventory`;
+        if (fecha_inicio && fecha_final) {
+            url=`${url}?date_inicial=${fecha_inicio}&date_final=${fecha_final}`
+        }
+
+        if (mesa) {
+            url=`${url}&id_product=${mesa}`
+        }
+
+        if (pago) {
+            url=`${url}&tipo_movimiento=${pago}`
+        }
+
         const response = await fetch(url)
         const result = await response.json()
         if(result.statusCode !== 200){

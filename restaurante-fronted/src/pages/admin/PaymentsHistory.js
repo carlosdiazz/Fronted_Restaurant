@@ -30,7 +30,7 @@ export function PaymentsHistory() {
 
   const generarReporte = () => {
     openCloseModal()
-}
+  }
 
 const generatePDF = () => {
   let doc = new jsPDF('p', "pt", "a4");
