@@ -39,13 +39,18 @@ export function ProductosAdmin() {
     openCloseModal()
   }
 
-  const onDeleteProduct = async(data) => {
-    const result = window.confirm(`Estas sguro que deseas eliminar este producto: ${data.name}`)
-    if (result) {
-      await deleteProduct(data._id);
-      toast.success(`Producto eliminado`)
-      onRefetch();
+  const onDeleteProduct = async (data) => {
+    try {
+      const result = window.confirm(`Estas sguro que deseas eliminar este producto: ${data.name}`)
+      if (result) {
+        await deleteProduct(data._id);
+        toast.success(`Producto eliminado`)
+        onRefetch();
+      }
+    } catch (error) {
+      toast.error(error.message)
     }
+
   }
 
 

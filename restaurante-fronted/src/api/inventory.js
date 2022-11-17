@@ -2,7 +2,7 @@ import {BASE_API_URL} from '../config/config'
 
 export const getInventorysApi = async (data) => {
     try {
-        console.log(data)
+        //console.log(data)
         let url = `${BASE_API_URL}/inventory`;
         const { mesa, pago, fecha_inicio, fecha_final } = data;
 

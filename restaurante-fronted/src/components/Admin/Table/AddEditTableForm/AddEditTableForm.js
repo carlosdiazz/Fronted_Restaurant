@@ -26,7 +26,7 @@ export function AddEditTableForm(props) {
 
             }catch(error){
                 toast.error(error.message)
-                console.log(error)
+                //console.log(error)
             }
     }})
 

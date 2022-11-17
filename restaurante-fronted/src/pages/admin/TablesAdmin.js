@@ -40,7 +40,7 @@ export function MesasAdmin() {
         toast.success(`Mesa eliminada`)
         onRefetch()
     }}catch(error){
-      console.log(error)
+      //console.log(error)
       toast.error(error.message)
     }
 

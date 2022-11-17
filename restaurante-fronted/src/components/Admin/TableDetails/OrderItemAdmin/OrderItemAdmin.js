@@ -17,13 +17,13 @@ export function OrderItemAdmin(props) {
 
     const onCheckDeliveredOrder = async() => {
         try{
-            console.log(order)
+
             await checkDeliveredOrder(order._id)
             await updateProductInventory(order.id_product._id, -1)
             onReloadOrders()
             toast.success("Producto entregado")
         }catch(error){
-            console.log(error)
+            //console.log(error)
             toast.error(error.message)
         }
     }
@@ -35,7 +35,7 @@ export function OrderItemAdmin(props) {
             onReloadOrders()
             toast.success("Producto eliminado")
         }catch(error){
-            console.log(error)
+            //console.log(error)
             toast.error(error.message)
         }
     }

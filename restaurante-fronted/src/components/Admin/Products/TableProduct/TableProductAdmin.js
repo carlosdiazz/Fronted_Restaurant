@@ -8,6 +8,7 @@ export  function TableProductAdmin(props) {
   const {products, updateProduct, deleteProduct} = props;
 
   const [searchProduct, setSearchProduct] = useState('')
+  const [productActive, serProductActive] = useState(true)
 
   const [searchCategory, setSearchCategory] = useState('')
 
@@ -18,6 +19,9 @@ export  function TableProductAdmin(props) {
   const cambiar_input_Category = (value) => {
     setSearchCategory(value.target.value)
   }
+
+  const isActive = () => serProductActive((prev) => !prev)
+
 
   return (
     <>
@@ -45,7 +49,7 @@ export  function TableProductAdmin(props) {
           <Table.HeaderCell>Categoria</Table.HeaderCell>
           <Table.HeaderCell>Stock</Table.HeaderCell>
           <Table.HeaderCell>Activo</Table.HeaderCell>
-          <Table.HeaderCell><Checkbox toggle /></Table.HeaderCell>
+            <Table.HeaderCell><Checkbox toggle checked={productActive } onChange={isActive} /></Table.HeaderCell>
         </Table.Row>
       </Table.Header>
 
@@ -53,8 +57,8 @@ export  function TableProductAdmin(props) {
         {map(products, (product, index )  =>
 
           product.name.includes(searchProduct) ?
-
           product.id_category?.name.includes(searchCategory) ?
+          product.is_active === productActive ?
         (
           <Table.Row key={index}>
             <Table.Cell width={2}>
@@ -66,11 +70,12 @@ export  function TableProductAdmin(props) {
             <Table.Cell>{product.id_category?.name || 'Null'}</Table.Cell>
             <Table.Cell>{product.stock}</Table.Cell>
             <Table.Cell className='status'>
-                {product.is_active ? <Icon name='check'/> : <Icon name="close" />}
+                    {product.is_active ? <Icon name='check' /> : <Icon name="close" />}
+                    {console.log(product.is_active)}
             </Table.Cell>
             <Actions product={product} updateProduct={updateProduct} deleteProduct={deleteProduct}/>
           </Table.Row>
-        ):null :null)}
+        ):null :null:null)}
 
 
       </Table.Body>

@@ -20,7 +20,7 @@ export function ClientLayout(props) {
       }catch(error){
         toast.error(error.message)
         closeTable()
-        console.log(error)
+        //console.log(error)
       }
     })()
 

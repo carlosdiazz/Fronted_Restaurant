@@ -25,7 +25,7 @@ export function SelectTable(props) {
                 toast.success("Mesa encontrada")
 
             }catch(error){
-                console.log(error)
+                //console.log(error)
                 toast.error(error.message)
             }
 

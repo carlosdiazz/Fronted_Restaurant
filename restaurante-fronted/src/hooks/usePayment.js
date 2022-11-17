@@ -20,7 +20,7 @@ export const usePayment = () => {
             return await createPaymentApi(paymentData,'')
         }catch (error) {
             setError(error)
-            console.log(error)
+            //console.log(error)
             throw error
         }
     }
@@ -33,7 +33,7 @@ export const usePayment = () => {
             return idTable
         }catch (error) {
             setError(error)
-            console.log(error)
+            //console.log(error)
             //throw error
         }
     }

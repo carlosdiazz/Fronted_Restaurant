@@ -39,7 +39,7 @@ export function TableDetailsAdmin() {
       getorderByTable(id, "", "orderStatus=asc&orderDate=desc")
     }catch(error){
       toast.error(error.message)
-      console.log(error)
+      //console.log(error)
     }
   }, [id, reloadOrders])
 
@@ -48,7 +48,7 @@ export function TableDetailsAdmin() {
       getTable(id)
     }catch(error){
       toast.error(error.message)
-      console.log(error)
+      //console.log(error)
     }
   },[id])
 
@@ -97,7 +97,7 @@ export function TableDetailsAdmin() {
 
     }catch(error){
       toast.error(error.message)
-      console.log(error)
+      //console.log(error)
     }
 
   }

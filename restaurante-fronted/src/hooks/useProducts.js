@@ -108,7 +108,7 @@ export const useProduct = () => {
 
         }catch (error) {
             setError(error)
-            console.log(error)
+            //console.log(error)
             throw error
         }
     }
@@ -122,7 +122,7 @@ export const useProduct = () => {
 
         }catch (error) {
             setError(error)
-            console.log(error)
+            //console.log(error)
             throw error
         }
     }

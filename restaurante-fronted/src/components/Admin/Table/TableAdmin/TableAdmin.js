@@ -26,7 +26,7 @@ export function TableAdmin(props) {
         const response = await getOrderByTableApi(table._id, ORDER_Status.PENDING , "")
         setOrders(response)
       }catch(error){
-        console.log(error)
+        //console.log(error)
         toast.error(error.message)
       }
     })();

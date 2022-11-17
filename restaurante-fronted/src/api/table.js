@@ -56,7 +56,7 @@ export const addTableApi = async(data, token) => {
 export const updateTableApi = async(id, data, token) => {
     try {
         const url =`${BASE_API_URL}/tables/${id}`
-        console.log(data)
+        //console.log(data)
         const new_data = {
             name: data.name,
             number: data.number,

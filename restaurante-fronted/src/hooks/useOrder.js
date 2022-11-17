@@ -70,7 +70,7 @@ export const useOrder = () => {
         }catch(error){
             setLoading(false)
             setError(error)
-            console.log(error)
+            //console.log(error)
         }
     }
 
@@ -81,7 +81,7 @@ export const useOrder = () => {
         }catch(error){
             setLoading(false)
             setError(error)
-            console.log(error)
+            //console.log(error)
         }
     }
 

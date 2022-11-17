@@ -37,7 +37,7 @@ export function ListProductCart(props) {
             navigate(`/client/${tableNumber}`)
             //onReloadCart()
         }catch(error){
-            console.log(error)
+            //console.log(error)
             toast.error(error.message)
         }
 

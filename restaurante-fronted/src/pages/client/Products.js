@@ -16,7 +16,7 @@ export function Products() {
       getProductByCategory(idCategory)
     }catch(error){
       toast.error(error.message)
-      console.log(error)
+      //console.log(error)
     }
   }, [idCategory])
 
