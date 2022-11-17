@@ -73,7 +73,7 @@ export function TableAdmin(props) {
           "pending-payment": pendingPayment
 
         })}/>
-      <p>{ table.name } - Numero {table.number}  </p>
+      <p>{ table.name } - Número {table.number}  </p>
     </Link>
   )
 }

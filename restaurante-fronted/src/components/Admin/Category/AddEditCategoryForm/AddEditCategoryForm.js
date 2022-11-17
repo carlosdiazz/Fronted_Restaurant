@@ -50,7 +50,7 @@ export function AddEditCategoryForm(props) {
 
             <Form.Input
                 name='description'
-                placeholder='Descripcion de la categoria'
+                placeholder='Descripción de la categoria'
                 value={formik.values.description}
                 onChange={formik.handleChange}
                 error={formik.errors.description}

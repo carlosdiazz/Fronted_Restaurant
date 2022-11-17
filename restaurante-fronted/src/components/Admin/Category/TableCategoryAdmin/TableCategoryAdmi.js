@@ -14,7 +14,7 @@ export  function TableCategoryAdmi(props) {
                 <Table.Row>
                     <Table.HeaderCell>Imagen</Table.HeaderCell>
                     <Table.HeaderCell>Categoria</Table.HeaderCell>
-                    <Table.HeaderCell>Descripcion</Table.HeaderCell>
+                    <Table.HeaderCell>Descripción</Table.HeaderCell>
                     <Table.HeaderCell></Table.HeaderCell>
                 </Table.Row>
             </Table.Header>

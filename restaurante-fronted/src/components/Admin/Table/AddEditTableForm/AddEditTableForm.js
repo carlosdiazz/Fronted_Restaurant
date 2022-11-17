@@ -43,7 +43,7 @@ export function AddEditTableForm(props) {
         <Form.Input
             name='number'
             type='number'
-            placeholder='Numero de la mesa'
+            placeholder='Número de la mesa'
             value={formik.values.number}
             onChange={formik.handleChange}
             error={formik.errors.number}

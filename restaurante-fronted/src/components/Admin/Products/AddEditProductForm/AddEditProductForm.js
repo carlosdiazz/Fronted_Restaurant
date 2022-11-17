@@ -65,7 +65,7 @@ export function AddEditProductForm(props) {
 
         <Form.Input
             name='description'
-            placeholder='Descripcion del producto'
+            placeholder='Descripción del producto'
             value={formik.values.description}
             onChange={formik.handleChange}
             error={formik.errors.description}

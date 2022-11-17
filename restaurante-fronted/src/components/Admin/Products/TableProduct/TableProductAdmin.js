@@ -1,5 +1,5 @@
 import React,{useState} from 'react'
-import {Table, Image, Button, Icon, Search} from 'semantic-ui-react'
+import {Table, Image, Button, Icon, Search, Checkbox} from 'semantic-ui-react'
 import {map, filter} from 'lodash'
 import './TableProductAdmin.scss'
 
@@ -28,7 +28,7 @@ export  function TableProductAdmin(props) {
             <Search value={searchProduct} showNoResults={false} onSearchChange={cambiar_input_Product}  placeholder="Filtrar por productos" />
           </Table.HeaderCell>
           <Table.HeaderCell >
-            <Search value={searchCategory} width={1} textAlign='left' showNoResults={false} onSearchChange={cambiar_input_Category}  placeholder="Filtrar por categorias" />
+            <Search value={searchCategory} width={1} textAlign='left' showNoResults={false} onSearchChange={cambiar_input_Category}  placeholder="Filtrar por categorías" />
           </Table.HeaderCell>
 
         </Table.Row>
@@ -40,12 +40,12 @@ export  function TableProductAdmin(props) {
         <Table.Row>
           <Table.HeaderCell>Imagen</Table.HeaderCell>
           <Table.HeaderCell>Producto</Table.HeaderCell>
-          <Table.HeaderCell>Descripcion</Table.HeaderCell>
+          <Table.HeaderCell>Descripción</Table.HeaderCell>
           <Table.HeaderCell>Precio</Table.HeaderCell>
           <Table.HeaderCell>Categoria</Table.HeaderCell>
           <Table.HeaderCell>Stock</Table.HeaderCell>
           <Table.HeaderCell>Activo</Table.HeaderCell>
-          <Table.HeaderCell></Table.HeaderCell>
+          <Table.HeaderCell><Checkbox toggle /></Table.HeaderCell>
         </Table.Row>
       </Table.Header>
 

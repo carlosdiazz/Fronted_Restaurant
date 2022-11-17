@@ -55,7 +55,7 @@ export function PaymentDetails(props) {
                     <Table.Cell>{payment?.id_table?.number}</Table.Cell>
                 </Table.Row>
                 <Table.Row>
-                    <Table.Cell><b>Metodo de pago:</b></Table.Cell>
+                    <Table.Cell><b>Método de pago:</b></Table.Cell>
                     <Table.Cell>{payment?.payment_Type}</Table.Cell>
                 </Table.Row>
                 <Table.Row>

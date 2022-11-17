@@ -42,7 +42,7 @@ function MenuLeft(props) {
 
             <Menu.Item as={Link} to={'/admin/categories'} active={pathname === "/admin/categories"}>
                 <h3>
-                    <Icon name="folder"/>Categorias
+                    <Icon name="folder"/>Categorías
                 </h3>
             </Menu.Item>
             <Menu.Item as={Link} to={'/admin/inventory-history'} active={pathname === "/admin-inventory-history"}>

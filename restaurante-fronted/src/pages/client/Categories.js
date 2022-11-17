@@ -13,7 +13,7 @@ export function Categories() {
 
   return (
     <div>
-        <h1>Categorias</h1>
+        <h1>Categorías</h1>
         {
             loading
                 ? (<Loader active inline='centered'>Cargando...</Loader>)

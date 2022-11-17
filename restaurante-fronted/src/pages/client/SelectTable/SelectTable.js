@@ -36,7 +36,7 @@ export function SelectTable(props) {
     <div className='select-Table'>
         <div className='select-Table__content'>
             <h1>Bienvenido al Restaurante</h1>
-            <h2>Introduce el numero de mesa</h2>
+            <h2>Introduce el número de mesa</h2>
 
             <Form onSubmit={onSubmit}>
                 <Form.Input placeholder="EJEMPLO 234 653 123 002" type='number' onChange={(_, data) => setTableNum(data.value)}/>

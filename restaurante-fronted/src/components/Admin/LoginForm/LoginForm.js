@@ -33,7 +33,7 @@ export function LoginForm() {
         <Form.Input
           name='email'
           type='email'
-          placeholder='Correo electronico'
+          placeholder='Correo electrónico'
           value={formik.values.email}
           onChange={formik.handleChange}
           error={formik.errors.email}

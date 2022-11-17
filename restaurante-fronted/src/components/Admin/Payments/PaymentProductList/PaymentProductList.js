@@ -14,7 +14,7 @@ export function PaymentProductList(props) {
 
     useEffect(() => {
         (async()=> {
-            const response = await getOrdersByPayment(payment._id)
+            const response = await getOrdersByPayment(payment?._id)
             setOrders(response)
         })()
     }, [])
@@ -23,12 +23,12 @@ export function PaymentProductList(props) {
     <div className='payment-product-list'>
         {
             map(orders, (order) => (
-                <div className='payment-product-list__product' key={order._id}>
+                <div className='payment-product-list__product' key={order?._id}>
                     <div>
-                    <Image src={order.id_product.img_url} avatar size='tiny' />
-                    <span>{order.id_product.name}</span>
+                    <Image src={order?.id_product?.img_url} avatar size='tiny' />
+                    <span>{order?.id_product?.name}</span>
                 </div>
-                    <span>{order.id_product.price} $RD</span>
+                    <span>{order?.id_product?.price} $RD</span>
                 </div>
         ))}
     </div>

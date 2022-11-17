@@ -32,10 +32,10 @@ export function AddEditUserForm(props) {
   return (
     <Form className='add-edit-user-form' onSubmit={formik.handleSubmit}>
         <Form.Input name='nickname' placeholder='Nombre del usuario' value={formik.values.nickname} error={formik.errors.nickname} onChange={formik.handleChange}/>
-        <Form.Input name='email' placeholder='Correo electronico' value={formik.values.email} error={formik.errors.email} onChange={formik.handleChange}/>
+        <Form.Input name='email' placeholder='Correo electrónico' value={formik.values.email} error={formik.errors.email} onChange={formik.handleChange}/>
         <Form.Input name='first_name' placeholder='Nombre' value={formik.values.first_name} error={formik.errors.first_name} onChange={formik.handleChange}/>
         <Form.Input name='last_name' placeholder='Apellidos' value={formik.values.last_name} error={formik.errors.last_name} onChange={formik.handleChange}/>
-        <Form.Input name='password' type ='password' placeholder='Contrasena' value={formik.values.password} error={formik.errors.password} onChange={formik.handleChange}/>
+        <Form.Input name='password' type ='password' placeholder='Contraseña' value={formik.values.password} error={formik.errors.password} onChange={formik.handleChange}/>
         <Form.Input name='birth_date' type='date'  placeholder='Fecha' value={formik.values.birth_date} error={formik.errors.birth_date} onChange={formik.handleChange}/>
         <div className='add-edit-user-form__active'>
             <Checkbox toggle checked={formik.values.is_active} onChange={(_, data)=> formik.setFieldValue('is_active', data.checked)}/> Usuario Activo

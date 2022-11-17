@@ -31,7 +31,7 @@ export function TableTablesAdmin(props) {
         <Table.Header>
           <Table.Row>
             <Table.HeaderCell>Nombre mesa</Table.HeaderCell>
-            <Table.HeaderCell>Numero de mesa</Table.HeaderCell>
+            <Table.HeaderCell>Número de mesa</Table.HeaderCell>
             <Table.HeaderCell></Table.HeaderCell>
           </Table.Row>
         </Table.Header>

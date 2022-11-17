@@ -62,11 +62,11 @@ export function TablePayments(props) {
         <Table.Header>
                 <Table.Row>
                 <Table.HeaderCell>Mesa</Table.HeaderCell>
-                <Table.HeaderCell>Numero Mesa</Table.HeaderCell>
+                <Table.HeaderCell>Número Mesa</Table.HeaderCell>
                 <Table.HeaderCell>Total</Table.HeaderCell>
                 <Table.HeaderCell>Tipo de pago</Table.HeaderCell>
                 <Table.HeaderCell>Fecha - Hora de pago</Table.HeaderCell>
-                <Table.HeaderCell >Informacion</Table.HeaderCell>
+                <Table.HeaderCell >Información</Table.HeaderCell>
 
             </Table.Row>
         </Table.Header>

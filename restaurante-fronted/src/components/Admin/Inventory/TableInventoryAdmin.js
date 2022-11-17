@@ -35,7 +35,7 @@ export function TableInventoryAdmin(props) {
                   <Search value={searchProduct} showNoResults={false} onSearchChange={cambiar_input_search}  placeholder="Filtrar por productos" /> 
                   </Table.HeaderCell>
                   <Table.HeaderCell textAlign='left' width={1}>
-                  <Search value={searchCategory} showNoResults={false} onSearchChange={cambiar_input_search_Category}  placeholder="Filtrar por categorias" /> 
+                  <Search value={searchCategory} showNoResults={false} onSearchChange={cambiar_input_search_Category}  placeholder="Filtrar por categorías" /> 
                   </Table.HeaderCell>
                   <Table.HeaderCell textAlign='right' width={1}><Input  type='number' value={stock}  onChange={cambiar_input }  placeholder="Ingrese Cantidad" /></Table.HeaderCell>
 

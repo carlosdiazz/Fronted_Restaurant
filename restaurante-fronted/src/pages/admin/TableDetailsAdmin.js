@@ -105,7 +105,7 @@ export function TableDetailsAdmin() {
   return (
     <>
       <HeaderPages
-        title={`Numero ${table?.number || ''} - ${table?.name || ''}`}
+        title={`Número ${table?.number || ''} - ${table?.name || ''}`}
         btnTitle={paymentData ? 'Ver Cuenta' : "Anadir pedido"}
         btnClick={openCloseModal}
         btnTitleTwo={!paymentData ? 'Generar Cuenta' : null}

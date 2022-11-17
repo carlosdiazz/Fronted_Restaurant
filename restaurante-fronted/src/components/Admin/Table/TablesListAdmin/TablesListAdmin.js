@@ -49,7 +49,7 @@ export  function TablesListAdmin(props) {
         </Button>
 
         <div className='table-list-admin__reload-toggle'>
-            <span>Reload Automatico</span>
+            <span>Reload Automático</span>
             <Checkbox toggle checked={autoReload} onChange={(_,data) => onCheckAutoReload(data.checked) }/>
         </div>
 
