@@ -14,7 +14,10 @@ export function TableTablesAdmin(props) {
   const openCloseModal = () => setShowModal((prev) => !prev)
 
   const showQr = (table) => {
-    const url  = `${window.location.origin}/client/${table.number}`
+    //CODIGO QR
+    const url = `${window.location.origin}/client/${table.number}`
+    //const url = `https://restauranteaguatibia.netlify.app/client/${table.number}`
+    console.log(url);
     setContentModal(
       <div style={{textAlign : "center"}}>
         <QRcode value={url} />
